@@ -4,39 +4,175 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+
+
+    <link rel="stylesheet" type="text/css" href="~/Assets/simple-sidebar.css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+
+    <link rel="stylesheet" href="/assets/vendor/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="/assets/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
+    <link rel="stylesheet" href="/assets/vendor/toastr/toastr.min.css">
+    <script src="/assets/vendor/chartist-plugin-legend-latest/chartist-plugin-legend.js"></script>
+    <script src="/assets/vendor/toastr/toastr.js"></script>
+    <script src="/assets/scripts/common.js"></script>
+
+
+    <style media="screen">
+        div a span {
+            width: 20px;
+            height: 20px;
+            height: 3px;
+            padding-bottom: 2px;
+            background: #00ff21;
+            margin-bottom: 5px;
+            display: block;
+            cursor: pointer;
+        }
+
+        /*.button {
+            margin:20px;
+            width: 30px;
+            height: 30px;
+            padding-left: 20px;
+            padding-top: 15px;
+            vertical-align:middle;
+        }*/
+
+        .button {
+            display: inline-block;
+            vertical-align: middle;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            margin: 30px;
+        }
+
+            .button span {
+                height: 1px;
+                background: #00ff21;
+                margin-bottom: 5px;
+            }
+
+        div a span:nth-child(2) {
+            width: 75%;
+        }
+
+        div a span:nth-child(3) {
+            width: 50%;
+        }
+
+
+
+
+
+        .bodystyle {
+            background-color: #f0f0f0;
+        }
+
+        .navbar {
+            border-radius: 0px;
+            box-shadow: black 0px -45px 32px 18px;
+        }
+
+        .search {
+            margin-left: 30px;
+            margin-bottom: 10px;
+        }
+    </style>
+
+
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+<body class="bodystyle">
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Hall management Dash
+                    </a>
+                </li>
+                <li>
+                    @Html.ActionLink("Home", "Index", "Students")
+                </li>
+                <li>
+                    @Html.ActionLink("Students", "Index", "Students")
+                </li>
+                <li>
+                    @Html.ActionLink("Teachers", "Index", "Teachers")
+                </li>
+                <li>
+                    @Html.ActionLink("Employees", "Index", "Employees")
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+
+            <div class="navbar navbar-default navbar-static-top" style="border-radius:0px;">
+                <div class="container-fluid form-inline">
+                    <a href="#menu-toggle" id="menu-toggle" class="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </a>
+
+                    @if (Url.RouteUrl(ViewContext.RouteData.Values).ToString().Contains("Search"))
+                    {
+                        <a class="btn btn-default" href="/Students/">Reset</a>
+                    }
+
+                    @if (Url.RouteUrl(ViewContext.RouteData.Values).ToString() == "/Students" ||
+Url.RouteUrl(ViewContext.RouteData.Values).ToString() == "/Employees" ||
+Url.RouteUrl(ViewContext.RouteData.Values).ToString() == "/Teachers" ||
+Url.RouteUrl(ViewContext.RouteData.Values).ToString() == "/Home")
+
+                    {
+                        using (Html.BeginForm("Search", Url.RouteUrl(ViewContext.RouteData.Values).ToString().Remove(0, 1)))
+                        {
+                            @Html.Editor("Search", new { htmlAttributes = new { @class = "form-control" } })
+                            <input type="submit" class="btn btn-outline-success my-2 my-sm-0" value="Search" />
+                        }
+                    }
+                </div>
+
+
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+
+
+            <div class="container">
+
+                @RenderBody()
+
+                <div class="container body-content">
+                    <hr />
+                    <footer>
+                        <p>&copy; @DateTime.Now.Year - Pro Hall Management System</p>
+                    </footer>
+                </div>
             </div>
         </div>
+        <!-- /#page-content-wrapper -->
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    <!-- /#Total wrapper -->
+
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+        $("#menu-toggle").click(function (e) {
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+
 </body>
 </html>

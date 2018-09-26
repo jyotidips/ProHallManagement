@@ -46,6 +46,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -142,13 +148,163 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\HallController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\StudentsController.cs" />
+    <Compile Include="Controllers\TeachersController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\DecryptPass.cs" />
+    <Compile Include="Helpers\EncryptPass.cs" />
+    <Compile Include="Migrations\201806291356130_AddSessionID.cs" />
+    <Compile Include="Migrations\201806291356130_AddSessionID.Designer.cs">
+      <DependentUpon>201806291356130_AddSessionID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806291401377_AddFacultyID.cs" />
+    <Compile Include="Migrations\201806291401377_AddFacultyID.Designer.cs">
+      <DependentUpon>201806291401377_AddFacultyID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806292023389_AddAnnotationToTeacher.cs" />
+    <Compile Include="Migrations\201806292023389_AddAnnotationToTeacher.Designer.cs">
+      <DependentUpon>201806292023389_AddAnnotationToTeacher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806302048595_DropTable.cs" />
+    <Compile Include="Migrations\201806302048595_DropTable.Designer.cs">
+      <DependentUpon>201806302048595_DropTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806302100049_AddTable.cs" />
+    <Compile Include="Migrations\201806302100049_AddTable.Designer.cs">
+      <DependentUpon>201806302100049_AddTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806302141303_RemoveAnnotation.cs" />
+    <Compile Include="Migrations\201806302141303_RemoveAnnotation.Designer.cs">
+      <DependentUpon>201806302141303_RemoveAnnotation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806302213229_AddAgainAnnotationNotNull.cs" />
+    <Compile Include="Migrations\201806302213229_AddAgainAnnotationNotNull.Designer.cs">
+      <DependentUpon>201806302213229_AddAgainAnnotationNotNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807010616175_RemoveEmployeeTotally.cs" />
+    <Compile Include="Migrations\201807010616175_RemoveEmployeeTotally.Designer.cs">
+      <DependentUpon>201807010616175_RemoveEmployeeTotally.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807010620017_AddEmployeeTotally.cs" />
+    <Compile Include="Migrations\201807010620017_AddEmployeeTotally.Designer.cs">
+      <DependentUpon>201807010620017_AddEmployeeTotally.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807010714323_AddAnnotationToWork.cs" />
+    <Compile Include="Migrations\201807010714323_AddAnnotationToWork.Designer.cs">
+      <DependentUpon>201807010714323_AddAnnotationToWork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807010851043_RemoveProperty.cs" />
+    <Compile Include="Migrations\201807010851043_RemoveProperty.Designer.cs">
+      <DependentUpon>201807010851043_RemoveProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807010917078_RemoveEmployeeAndWork.cs" />
+    <Compile Include="Migrations\201807010917078_RemoveEmployeeAndWork.Designer.cs">
+      <DependentUpon>201807010917078_RemoveEmployeeAndWork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807010925439_ADDEmployeeAndWork.cs" />
+    <Compile Include="Migrations\201807010925439_ADDEmployeeAndWork.Designer.cs">
+      <DependentUpon>201807010925439_ADDEmployeeAndWork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807010932581_ADDEmployeeProperty.cs" />
+    <Compile Include="Migrations\201807010932581_ADDEmployeeProperty.Designer.cs">
+      <DependentUpon>201807010932581_ADDEmployeeProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808180230575_AddingNotificationAndStudentPostTables.cs" />
+    <Compile Include="Migrations\201808180230575_AddingNotificationAndStudentPostTables.Designer.cs">
+      <DependentUpon>201808180230575_AddingNotificationAndStudentPostTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808220838574_NewTablePOSTandSTUDENT.POST.cs" />
+    <Compile Include="Migrations\201808220838574_NewTablePOSTandSTUDENT.POST.Designer.cs">
+      <DependentUpon>201808220838574_NewTablePOSTandSTUDENT.POST.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808220849119_NewTableAttribute.cs" />
+    <Compile Include="Migrations\201808220849119_NewTableAttribute.Designer.cs">
+      <DependentUpon>201808220849119_NewTableAttribute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221704194_Removetab.cs" />
+    <Compile Include="Migrations\201808221704194_Removetab.Designer.cs">
+      <DependentUpon>201808221704194_Removetab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221728476_RemovetabNew.cs" />
+    <Compile Include="Migrations\201808221728476_RemovetabNew.Designer.cs">
+      <DependentUpon>201808221728476_RemovetabNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221730462_AddTables.cs" />
+    <Compile Include="Migrations\201808221730462_AddTables.Designer.cs">
+      <DependentUpon>201808221730462_AddTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221815367_AddTableColumnStatus.cs" />
+    <Compile Include="Migrations\201808221815367_AddTableColumnStatus.Designer.cs">
+      <DependentUpon>201808221815367_AddTableColumnStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808221909591_AddTableColumnSupportandUnsupport.cs" />
+    <Compile Include="Migrations\201808221909591_AddTableColumnSupportandUnsupport.Designer.cs">
+      <DependentUpon>201808221909591_AddTableColumnSupportandUnsupport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808290811447_addEmail.cs" />
+    <Compile Include="Migrations\201808290811447_addEmail.Designer.cs">
+      <DependentUpon>201808290811447_addEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808291714060_addUser.cs" />
+    <Compile Include="Migrations\201808291714060_addUser.Designer.cs">
+      <DependentUpon>201808291714060_addUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808291938336_addEmail1.cs" />
+    <Compile Include="Migrations\201808291938336_addEmail1.Designer.cs">
+      <DependentUpon>201808291938336_addEmail1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808300627006_addUserCategory.cs" />
+    <Compile Include="Migrations\201808300627006_addUserCategory.Designer.cs">
+      <DependentUpon>201808300627006_addUserCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809190846110_userCategoryRemove.cs" />
+    <Compile Include="Migrations\201809190846110_userCategoryRemove.Designer.cs">
+      <DependentUpon>201809190846110_userCategoryRemove.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809190849482_userCategoryAdd.cs" />
+    <Compile Include="Migrations\201809190849482_userCategoryAdd.Designer.cs">
+      <DependentUpon>201809190849482_userCategoryAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809190940258_employeePhone.cs" />
+    <Compile Include="Migrations\201809190940258_employeePhone.Designer.cs">
+      <DependentUpon>201809190940258_employeePhone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DataContext.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Faculty.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\Session.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\Teacher.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserCategory.cs" />
+    <Compile Include="Models\Work.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\EmployeeViewModel.cs" />
+    <Compile Include="ViewModel\FacultyView.cs" />
+    <Compile Include="ViewModel\HallView.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\NotificationView.cs" />
+    <Compile Include="ViewModel\SearchViewModel.cs" />
+    <Compile Include="ViewModel\SessionView.cs" />
+    <Compile Include="ViewModel\StudentFacultySessionViewModel.cs" />
+    <Compile Include="ViewModel\StudentView.cs" />
+    <Compile Include="ViewModel\TeacherViewModel.cs" />
+    <Compile Include="ViewModel\TotalViewModel.cs" />
+    <Compile Include="ViewModel\UserView.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\sidebar.css" />
+    <Content Include="Assets\simple-sidebar.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -160,6 +316,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\ehall - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\ehallpstu - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -185,10 +343,28 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Students\Index.cshtml" />
+    <Content Include="Views\Students\Create.cshtml" />
+    <Content Include="Views\Students\Edit.cshtml" />
+    <Content Include="Views\Teachers\Index.cshtml" />
+    <Content Include="Views\Teachers\Create.cshtml" />
+    <Content Include="Views\Teachers\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Shared\_CustomLayout.cshtml" />
+    <Content Include="Views\Students\NotFound.cshtml" />
+    <Content Include="Views\Posts\Delete.cshtml" />
+    <Content Include="Views\Posts\Details.cshtml" />
+    <Content Include="Views\Posts\Index.cshtml" />
+    <Content Include="Views\Users\SignUp.cshtml" />
+    <Content Include="Views\Users\SignIn.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Account.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\Hall\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -202,6 +378,95 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201806291356130_AddSessionID.resx">
+      <DependentUpon>201806291356130_AddSessionID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806291401377_AddFacultyID.resx">
+      <DependentUpon>201806291401377_AddFacultyID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806292023389_AddAnnotationToTeacher.resx">
+      <DependentUpon>201806292023389_AddAnnotationToTeacher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806302048595_DropTable.resx">
+      <DependentUpon>201806302048595_DropTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806302100049_AddTable.resx">
+      <DependentUpon>201806302100049_AddTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806302141303_RemoveAnnotation.resx">
+      <DependentUpon>201806302141303_RemoveAnnotation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806302213229_AddAgainAnnotationNotNull.resx">
+      <DependentUpon>201806302213229_AddAgainAnnotationNotNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807010616175_RemoveEmployeeTotally.resx">
+      <DependentUpon>201807010616175_RemoveEmployeeTotally.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807010620017_AddEmployeeTotally.resx">
+      <DependentUpon>201807010620017_AddEmployeeTotally.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807010714323_AddAnnotationToWork.resx">
+      <DependentUpon>201807010714323_AddAnnotationToWork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807010851043_RemoveProperty.resx">
+      <DependentUpon>201807010851043_RemoveProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807010917078_RemoveEmployeeAndWork.resx">
+      <DependentUpon>201807010917078_RemoveEmployeeAndWork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807010925439_ADDEmployeeAndWork.resx">
+      <DependentUpon>201807010925439_ADDEmployeeAndWork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807010932581_ADDEmployeeProperty.resx">
+      <DependentUpon>201807010932581_ADDEmployeeProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808180230575_AddingNotificationAndStudentPostTables.resx">
+      <DependentUpon>201808180230575_AddingNotificationAndStudentPostTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808220838574_NewTablePOSTandSTUDENT.POST.resx">
+      <DependentUpon>201808220838574_NewTablePOSTandSTUDENT.POST.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808220849119_NewTableAttribute.resx">
+      <DependentUpon>201808220849119_NewTableAttribute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221704194_Removetab.resx">
+      <DependentUpon>201808221704194_Removetab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221728476_RemovetabNew.resx">
+      <DependentUpon>201808221728476_RemovetabNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221730462_AddTables.resx">
+      <DependentUpon>201808221730462_AddTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221815367_AddTableColumnStatus.resx">
+      <DependentUpon>201808221815367_AddTableColumnStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808221909591_AddTableColumnSupportandUnsupport.resx">
+      <DependentUpon>201808221909591_AddTableColumnSupportandUnsupport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808290811447_addEmail.resx">
+      <DependentUpon>201808290811447_addEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808291714060_addUser.resx">
+      <DependentUpon>201808291714060_addUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808291938336_addEmail1.resx">
+      <DependentUpon>201808291938336_addEmail1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808300627006_addUserCategory.resx">
+      <DependentUpon>201808300627006_addUserCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809190846110_userCategoryRemove.resx">
+      <DependentUpon>201809190846110_userCategoryRemove.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809190849482_userCategoryAdd.resx">
+      <DependentUpon>201809190849482_userCategoryAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809190940258_employeePhone.resx">
+      <DependentUpon>201809190940258_employeePhone.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

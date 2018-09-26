@@ -10,6 +10,7 @@ namespace ProHallManagement.Controllers
     {
         public ActionResult Index()
         {
+
             return View();
         }
 
