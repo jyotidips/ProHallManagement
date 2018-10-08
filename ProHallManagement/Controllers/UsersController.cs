@@ -207,47 +207,66 @@ namespace ProHallManagement.Controllers
 
             var email = Session["Email"];
 
-            var user = context.Users.First(u => u.Email == email);
-            if (user.UserCategoryId == 1)
+            if (email != null)
             {
-                var student = context.Students.Include(s => s.Faculty).Include(s => s.Session).Where(u => u.Email == email).FirstOrDefault();
 
-                var data = new TotalViewModel
+                var user = context.Users.First(u => u.Email == email);
+                if (user.UserCategoryId == 1)
                 {
-                    Students = student,
-                    Faculty = context.Faculties.ToList(),
-                    Sessions = context.Sessions.ToList()
-                };
-                return View(data);
+                    var student = context.Students.Include(s => s.Faculty).Include(s => s.Session).Where(u => u.Email == email).FirstOrDefault();
+
+                    var data = new TotalViewModel
+                    {
+                        Students = student,
+                        Faculty = context.Faculties.ToList(),
+                        Sessions = context.Sessions.ToList()
+                    };
+                    return View(data);
+                }
+
+                else if (user.UserCategoryId == 2)
+                {
+
+                    var teacher = context.Teachers.Where(u => u.Email == email).FirstOrDefault();
+
+                    var data = new TotalViewModel
+                    {
+                        Teachers = teacher
+                    };
+                    return View(data);
+
+
+                }
+
+
+                else if (user.UserCategoryId == 3)
+                {
+
+                    var employee = context.Employees.Where(u => u.Phone == email).FirstOrDefault(); //here the email and phone for employee is same
+
+                    var data = new TotalViewModel
+                    {
+                        Employees = employee
+                    };
+                    return View(data);
+                }
+            }
+
+            else
+            {
+                return RedirectToAction("SignIn", "Users");
             }
 
 
-            return View(user);
+            return View();
         }
 
 
 
-        //[HttpPost]
-        //public ActionResult StartSession(LoginViewModel login)
-        //{
 
-        //    var userexists = context.Users.Where(u => u.Email.Contains(login.Email) && u.Password.Contains(login.Password)).FirstOrDefault();
 
-        //    if (userexists != null)
-        //    {
 
-        //        Session["Name"] = userexists.Name;
-        //        Session["Email"] = userexists.Email;
 
-        //    }
-        //    else
-        //    {
-
-        //        return Content("Data not exists");
-        //    }
-
-        //    return View();
-        //}
 
     }
 }
