@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<ProHallManagement.ViewModel.StudentView>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                /**/
+
+                ViewBag.Title = "Index";
+                Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
@@ -12,11 +14,11 @@
 @*Working code*@
 
 @*@using (Html.BeginForm("Search", "Students"))
-{
-    @Html.TextBox("Search")
-    <input type="submit" value="search" />
-    ViewBag.count = 1;
-}*@
+    {
+        @Html.TextBox("Search")
+        <input type="submit" value="search" />
+        ViewBag.count = 1;
+    }*@
 
 
 
@@ -56,37 +58,37 @@
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Attachment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Registration)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Faculty.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Session.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.StudentId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Attachment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Registration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Faculty.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Session.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.StudentId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
+            </td>
+        </tr>
     }
 
 </table>

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ProHallManagement.ViewModel
 {
-    public class TotalViewModel
+    public class TotalViewModel : BaseViewModel
     {
         public Student Students { get; set; }
         public List<Session> Sessions { get; set; }
@@ -14,8 +14,6 @@ namespace ProHallManagement.ViewModel
 
 
         public Teacher Teachers { get; set; }
-
-
         public Employee Employees { get; set; }
         public Work Works { get; set; }
 

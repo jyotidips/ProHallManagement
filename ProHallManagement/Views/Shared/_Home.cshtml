@@ -25,16 +25,17 @@
                     <li>@Html.ActionLink("Teachers", "Index", "Teachers")</li>
                     <li>@Html.ActionLink("Employees", "Index", "Employees")</li>
                 </ul>
+                @Html.Partial("_LoginTopPartial")
             </div>
         </div>
     </div>
 
 
-    <div >
+    <div>
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Pro Hall Management Mystem</p>
+            <p>&copy; @DateTime.Now.Year - Pro Hall Management System</p>
         </footer>
     </div>
 

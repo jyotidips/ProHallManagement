@@ -11,11 +11,6 @@ namespace ProHallManagement.ViewModel
     public class StudentView
     {
 
-        public StudentView()
-        {
-                
-        }
-
         public StudentView(Student students)
         {
             StudentId = students.StudentId;
@@ -44,7 +39,7 @@ namespace ProHallManagement.ViewModel
         [Required]
         [DisplayName("Email")]
         public string Email { get; set; }
-        
+
 
         [Required]
         [DisplayName("Attachment No.")]

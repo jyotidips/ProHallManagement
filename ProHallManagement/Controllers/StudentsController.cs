@@ -11,8 +11,8 @@ namespace ProHallManagement.Controllers
 {
     public class StudentsController : Controller
     {
-        DataContext studentContext;
-        List<StudentView> studentview;
+        readonly DataContext studentContext;
+        List<StudentView> _studentview;
 
         public StudentsController()
         {
@@ -33,7 +33,6 @@ namespace ProHallManagement.Controllers
                 .ToArray()
                 .Select(c => new StudentView(c))
                 .ToList();
-
             return View(students);
         }
 
@@ -47,20 +46,18 @@ namespace ProHallManagement.Controllers
             if (ViewBag.count == 1)
             {
 
-                studentview = null;
+                _studentview = null;
 
             }
-
-
             ViewBag.count = 0;
-            this.studentview = studentContext.Students
+            this._studentview = studentContext.Students
               .Include(c => c.Session)
               .Include(c => c.Faculty)
               .Where(s => s.Name.Contains(search))
               .ToArray()
               .Select(c => new StudentView(c))
               .ToList();
-            return View("Index", studentview);
+            return View("Index", _studentview);
 
 
         }
@@ -83,15 +80,20 @@ namespace ProHallManagement.Controllers
         [HttpPost]
         public ActionResult AddStudent(StudentFacultySessionViewModel studentV)
         {
+            if (studentContext.Students.Single(s => s.Email == studentV.Student.Email) != null)
+            {
+                ViewBag.error = studentV.Student.Name + " is already registered with this Email";
+                return View("Create", studentV);
+            }
+
             var user = new User
             {
                 Name = studentV.Student.Name,
                 Email = studentV.Student.Email,
+                Password = "12345",
                 CreatedAt = DateTime.Now,
                 UserCategoryId = 1
             };
-
-
 
             var student = new Student
             {
@@ -129,7 +131,11 @@ namespace ProHallManagement.Controllers
 
         public ActionResult Update(Student student)
         {
-
+            if (studentContext.Students.Single(s => s.Email == student.Email) != null)
+            {
+                ViewBag.error = student.Name + " is already registered with this Email";
+                return View("Edit");
+            }
 
             var studentData = studentContext.Students
                 .Include(s => s.Faculty)

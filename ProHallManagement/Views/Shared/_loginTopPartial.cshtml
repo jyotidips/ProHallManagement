@@ -1,0 +1,20 @@
+﻿@model ProHallManagement.ViewModel.BaseViewModel
+
+@if (Model.CurrentUserName != "")
+{
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hello " + Model.CurrentUserName + "!", "Account", "Users")
+        </li>
+        <li><a asp-controller=""></a></li>
+    </ul>
+
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "SignUp", "Users")</li>
+        <li>@Html.ActionLink("Log in", "SignIn", "Users")</li>
+    </ul>
+}

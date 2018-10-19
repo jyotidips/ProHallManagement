@@ -22,17 +22,12 @@ namespace ProHallManagement.Controllers
         {
             _context.Dispose();
         }
-
-
-
-
         // GET: Employees
         public ActionResult Index()
         {
             var employees = _context.Employees.Include(c => c.Work).ToList();
             return View(employees);
         }
-
         public ActionResult Create()
         {
             var allWorks = new EmployeeViewModel
@@ -41,18 +36,22 @@ namespace ProHallManagement.Controllers
             };
 
             return View(allWorks);
-
         }
 
 
         public ActionResult Add(EmployeeViewModel viewModel)
         {
+            if (_context.Students.Single(s => s.Email == viewModel.Employee.Phone) != null)
+            {
+                ViewBag.error = viewModel.Employee.Name + " is already registered with this : " + viewModel.Employee.Phone + " Email/Phone";
+                return View("Create", viewModel);
+            }
 
             var user = new User
             {
                 Name = viewModel.Employee.Name,
                 Email = viewModel.Employee.Phone,
-                //Password   //Here The password field is left empty
+                Password = "12345",  //Here The password field is left empty
                 CreatedAt = DateTime.Now,
                 UserCategoryId = 3
             };

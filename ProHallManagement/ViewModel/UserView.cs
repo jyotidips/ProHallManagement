@@ -19,7 +19,7 @@ namespace ProHallManagement.ViewModel
         public Employee Employee { get; set; }
 
         public string Password { get; set; }
-
+        public IEnumerable<UserCategory> UserCategory { get; set; }
         public IEnumerable<Work> Work { get; set; }
         public IEnumerable<Faculty> Faculty { get; set; }
         public IEnumerable<Session> Session { get; set; }

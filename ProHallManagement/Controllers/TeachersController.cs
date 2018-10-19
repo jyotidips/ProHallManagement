@@ -41,13 +41,17 @@ namespace ProHallManagement.Controllers
         public ActionResult AddTeacher(Teacher teacher)
         {
 
-
+            if (teacherContext.Teachers.Single(t => t.Email == teacher.Email) != null)
+            {
+                ViewBag.error = teacher.Name + " is already registered with this Email";
+                return View("Create", teacher);
+            }
 
             var newuser = new User
             {
                 Name = teacher.Name,
                 Email = teacher.Email,
-                //Password = teacher.Password, Here any password cannot be given By Admin
+                Password = "12345", //Here any password cannot be given By Admin
                 CreatedAt = DateTime.Now,
                 UserCategoryId = 2
             };
@@ -91,8 +95,13 @@ namespace ProHallManagement.Controllers
 
         public ActionResult Update(Teacher teacher)
         {
-            var TeacherInDb = teacherContext.Teachers.Single(c => c.Id == teacher.Id);
+            if (teacherContext.Students.Single(s => s.Email == teacher.Email) != null)
+            {
+                ViewBag.error = teacher.Name + " is already registered with this Email";
+                return View("Edit", teacher);
+            }
 
+            var TeacherInDb = teacherContext.Teachers.Single(c => c.Id == teacher.Id);
 
             var userdata = teacherContext.Users.Single(u => u.Email == TeacherInDb.Email);
 
