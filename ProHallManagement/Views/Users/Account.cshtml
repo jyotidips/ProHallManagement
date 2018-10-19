@@ -4,7 +4,7 @@
     /**/
 
     ViewBag.Title = "Account";
-    Layout = "~/Views/Shared/_CustomLayout.cshtml";
+    Layout = "~/Views/Shared/_home.cshtml";
 }
 
 <h2>Account</h2>
@@ -17,6 +17,9 @@
 }
 @if (Model.Teachers != null)
 {
+
+
+
     <h1>Teachers Id</h1>
     <h2>@Model.Teachers.Name</h2>
     <h2>@Model.Teachers.Phone </h2>

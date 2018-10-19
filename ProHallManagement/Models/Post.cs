@@ -29,6 +29,10 @@ namespace ProHallManagement.Models
         public int StudentId { get; set; }
         public virtual Student Student { get; set; }
 
+        public ICollection<Comment> Comments { get; set; }
+
+        public PostImage PostImageId { get; set; }
+        public PostImage PostImage { get; set; }
 
     }
 }

@@ -7,9 +7,8 @@
         <li>
             @Html.ActionLink("Hello " + Model.CurrentUserName + "!", "Account", "Users")
         </li>
-        <li><a asp-controller=""></a></li>
+        <li>@Html.ActionLink("SignOut", "SignOut", "Users")</li>
     </ul>
-
 }
 else
 {

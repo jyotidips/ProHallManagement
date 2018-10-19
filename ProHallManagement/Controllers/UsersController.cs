@@ -327,7 +327,7 @@ namespace ProHallManagement.Controllers
         [HttpPost]
         public ActionResult SignIn(LoginViewModel signinVm)
         {
-            this.SignInFn(signinVm);
+            SignInFn(signinVm);
             return RedirectToAction("Account", "Users");
         }
 
@@ -341,26 +341,26 @@ namespace ProHallManagement.Controllers
                 var user = _context.Users.First(u => u.Email == email);
                 if (user.UserCategoryId == 1)
                 {
-                    var student = _context.Students.Include(s => s.Faculty).Include(s => s.Session).Where(u => u.Email == email).FirstOrDefault();
+                    var student = _context.Students.Include(s => s.Faculty).Include(s => s.Session).Where(u => u.Email == email).First();
 
                     var data = new TotalViewModel
                     {
                         Students = student,
                         Faculty = _context.Faculties.ToList(),
                         Sessions = _context.Sessions.ToList(),
-                        //User = user
+                        CurrentUserName = student.Name
                     };
                     return View(data);
                 }
 
                 else if (user.UserCategoryId == 2)
                 {
-                    var teacher = _context.Teachers.Where(u => u.Email == email).FirstOrDefault();
+                    var teacher = _context.Teachers.Where(u => u.Email == email).First();
 
                     var data = new TotalViewModel
                     {
                         Teachers = teacher,
-                        //User = user
+                        CurrentUserName = teacher.Name
                     };
                     return View(data);
                 }
@@ -368,18 +368,18 @@ namespace ProHallManagement.Controllers
                 else if (user.UserCategoryId == 3)
                 {
 
-                    var employee = _context.Employees.Where(u => u.Phone == email).FirstOrDefault(); //here the email and phone for employee is same
+                    var employee = _context.Employees.Where(u => u.Phone == email).First(); //here the email and phone for employee is same
 
                     var data = new TotalViewModel
                     {
                         //Employees = employee,
-                        //User = user
+                        CurrentUserName = employee.Name
                     };
                     return View(data);
                 }
                 else
                 {
-                    return Content("User Category does not exists");
+                    return Content("User of this Category does not exists");
                 }
             }
 
@@ -410,6 +410,12 @@ namespace ProHallManagement.Controllers
                     Session["Email"] = signinVm.Email;
                 }
             }
+        }
+
+        public ActionResult SignOut()
+        {
+            Session.Clear();
+            return RedirectToAction("SignIn");
         }
 
 

@@ -24,6 +24,9 @@ namespace ProHallManagement.Models
 
         public UserCategory UserCategory { get; set; }
 
+        public ICollection<Comment> Comments { get; set; }
+        public ICollection<UserImage> UserImages { get; set; }
+
 
 
 
