@@ -1,0 +1,58 @@
+﻿@model ProHallManagement.Areas.Admin.ViewModels.RoleAssign
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@if (ViewBag.errorExist != null)
+{
+    <p>
+
+        @ViewBag.errorExist
+    </p>
+}
+
+
+@using (Html.BeginForm("Assign", "Roles", FormMethod.Post))
+{
+
+
+
+    <table class="table">
+        <tr>
+
+            <th>
+                Name
+            </th>
+            <th>
+                Email/Phone
+            </th>
+
+            <th>
+                Role
+            </th>
+            <th></th>
+        </tr>
+
+
+        <tr>
+
+            <td>
+                @Model.User.Name
+            </td>
+
+            <td>
+                @Model.User.Email
+            </td>
+
+            <td>
+                @Html.DropDownListFor(model => model.UserRole.RoleId, new SelectList(Model.Roles, "Id", "Name"), "Select Role", new { @class = "form-control" })
+            </td>
+            @Html.HiddenFor(m => m.User.Id)
+            <td>
+                <button type="submit" value="ASSIGN"></button>
+
+            </td>
+        </tr>
+    </table>
+}

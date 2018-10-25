@@ -1,0 +1,28 @@
+﻿@model ProHallManagement.Areas.Admin.ViewModels.RoleAssign
+
+@{
+    ViewBag.Title = "AssignRole";
+}
+
+<h2>AssignRole</h2>
+
+@if (ViewBag.assignSuccess != null)
+{
+    <p>
+        <h3>@ViewBag.assignSuccess</h3>
+    </p>
+}
+
+<p>
+    @using (Html.BeginForm("AssignRole", "Roles", FormMethod.Get))
+    {
+        <input type="text" name="keyword" />
+        <button type="submit" value="Search"></button>
+    }
+</p>
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@Html.Partial("_userPartial", Model)

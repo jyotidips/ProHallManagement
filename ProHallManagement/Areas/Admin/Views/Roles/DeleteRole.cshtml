@@ -1,0 +1,56 @@
+﻿@model ProHallManagement.Areas.Admin.ViewModels.RoleAssign
+
+<table class="table">
+    <tr>
+
+        <th>
+            User's Name
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Role/s
+        </th>
+
+        <th></th>
+    </tr>
+    <tr>
+
+        <td>
+            @Html.DisplayFor(model => model.User.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.User.Email)
+        </td>
+        <td>
+            @{
+                foreach (var userRole in Model.UserRoles)
+                {
+                    using (Html.BeginForm("DeleteRole", "Roles"))
+                    {
+                        @Html.HiddenFor(model => model.User.Id)
+
+                        var name = Model.Roles.Where(r => r.Id == userRole.RoleId).Select(r => r.Name).SingleOrDefault();
+                        <p>
+                            @name
+                            @Html.HiddenFor(u => userRole.RoleId)
+                            <input type="submit" value="Delete" class="btn btn-default" />
+                        </p>
+
+
+                    }
+                }
+            }
+
+        </td>
+    </tr>
+
+
+</table>
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

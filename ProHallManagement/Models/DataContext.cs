@@ -26,6 +26,9 @@ namespace ProHallManagement.Models
         public DbSet<Comment> Comments { get; set; }
         public DbSet<PostImage> PostImages { get; set; }
 
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+
         public DbSet<UserImage> UserImages { get; set; }
 
 

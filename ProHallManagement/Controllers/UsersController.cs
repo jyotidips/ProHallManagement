@@ -169,9 +169,8 @@ namespace ProHallManagement.Controllers
                 };
                 var newemployee = new Employee
                 {
-                    Name = user.Teacher.Name,
-
-                    Address = user.Teacher.Address,
+                    Name = user.Employee.Name,
+                    Address = user.Employee.Address,
                     WorkID = user.Employee.WorkID,
                     Phone = user.Employee.Phone
                 };
@@ -188,136 +187,6 @@ namespace ProHallManagement.Controllers
         }
 
 
-
-
-
-        [HttpPost]
-        public ActionResult SignUpAsStudent(UserView user)
-        {
-            if (_context.Students.Where(s => s.Email == user.Student.Email).SingleOrDefault() != null)
-            {
-
-                ViewBag.error = user.Student.Name + " is already registered with this" + user.Student.Email + " email";
-
-                return RedirectToAction("SignUp", "Users");
-            }
-
-            var newuser = new User
-            {
-                Name = user.Student.Name,
-                Email = user.Student.Email,
-                Password = user.Password,
-                CreatedAt = DateTime.Now,
-                UserCategoryId = 1
-            };
-            var newstudent = new Student
-            {
-                Name = user.Student.Name,
-                StudentId = user.Student.StudentId,
-                Registration = user.Student.Registration,
-                Email = user.Student.Email,
-                Attachment = user.Student.Attachment,
-                Faculty = user.Student.Faculty,
-                FacultyId = user.Student.FacultyId,
-                Session = user.Student.Session,
-                SessionId = user.Student.SessionId,
-                Phone = user.Student.Phone,
-                Post = user.Student.Post,
-                PostId = user.Student.PostId
-            };
-
-            _context.Students.Add(newstudent);
-            _context.Users.Add(newuser);
-            _context.SaveChanges();
-            return RedirectToAction("Index", "Students");
-        }
-
-
-        [HttpPost]
-        public ActionResult SignUpAsTeacher(UserView user)
-        {
-            if (_context.Users.Single(u => u.Email == user.Teacher.Email) == null)
-            {
-                ViewBag.error = "You are already registered with this : " + user.Teacher.Email + " Email";
-                return RedirectToAction("SignUp", user);
-            }
-            var newuser = new User
-            {
-                Name = user.Teacher.Name,
-                Email = user.Teacher.Email,
-                Password = user.Password,
-                CreatedAt = DateTime.Now,
-                UserCategoryId = 2
-            };
-
-
-            if (DateTime.Now < user.Teacher.DateEnd)
-            {
-                _act = true;
-            }
-            else
-            {
-                _act = false;
-            }
-
-
-            var newteacher = new Teacher
-            {
-                Name = user.Teacher.Name,
-                Email = user.Teacher.Email,
-                Address = user.Teacher.Address,
-                DateJoined = user.Teacher.DateJoined,
-                DateEnd = user.Teacher.DateJoined.AddYears(1),
-                Activity = _act,
-                Phone = user.Teacher.Phone
-
-            };
-
-            _context.Teachers.Add(newteacher);
-            _context.Users.Add(newuser);
-            _context.SaveChanges();
-
-
-            return RedirectToAction("Index", "Teachers");
-        }
-        [HttpPost]
-        public ActionResult SignUpAsEmployee(UserView user)
-        {
-            if (_context.Users.Single(u => u.Email == user.Employee.Phone) == null)
-            {
-                ViewBag.error = "You are already registered with this : " + user.Employee.Phone + " Email/Phone";
-                return RedirectToAction("SignUp", user);
-            }
-            var newuser = new User
-            {
-                Name = user.Employee.Name,
-                Email = user.Employee.Phone,
-                Password = user.Password,
-                CreatedAt = DateTime.Now,
-                UserCategoryId = 3
-            };
-
-
-            var newemployee = new Employee
-            {
-                Name = user.Teacher.Name,
-
-                Address = user.Teacher.Address,
-                WorkID = user.Employee.WorkID,
-                Phone = user.Employee.Phone
-            };
-
-            _context.Employees.Add(newemployee);
-            _context.Users.Add(newuser);
-            _context.SaveChanges();
-
-
-            return RedirectToAction("Index", "Teachers");
-        }
-
-
-
-
         [HttpGet]
         public ActionResult SignIn()
         {
@@ -331,6 +200,10 @@ namespace ProHallManagement.Controllers
             return RedirectToAction("Account", "Users");
         }
 
+
+
+
+        //This is the ACCOUNT action of USER CONTROLLER
         [HttpGet]
         public ActionResult Account()
         {
@@ -391,12 +264,14 @@ namespace ProHallManagement.Controllers
         }
 
 
+
+
+
         public void SignInFn(LoginViewModel signinVm)
         {
 
             if (ModelState.IsValid)
             {
-
                 var emailPass = _context.Users.FirstOrDefault(u => u.Email == signinVm.Email && u.Password.Contains(signinVm.Password));
 
                 //var idpass = context.Users
@@ -415,6 +290,7 @@ namespace ProHallManagement.Controllers
         public ActionResult SignOut()
         {
             Session.Clear();
+            Session.RemoveAll();
             return RedirectToAction("SignIn");
         }
 

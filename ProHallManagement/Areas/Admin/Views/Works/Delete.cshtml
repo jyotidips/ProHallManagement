@@ -1,0 +1,46 @@
+﻿@model ProHallManagement.Areas.Admin.ViewModels.AssignedEmployees
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Work</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Work.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Work.Name)
+        </dd>
+
+    </dl>
+
+    @if (ViewBag.assignedEmp == null)
+    {
+        <h2>Safe! No Data Is Associated with @ViewBag.work Category</h2>
+    }
+    else
+    {
+        <h2>Take Attention Please!</h2>
+        <h4>Some @Html.ActionLink(" Employees And Users ", "AssignedEmployees", "Works") are assigned with</h4> <h4 class="active">"@ViewBag.work"</h4><h4>Category</h4> <br />
+    }
+
+
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

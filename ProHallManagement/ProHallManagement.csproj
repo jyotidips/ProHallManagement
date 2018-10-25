@@ -148,17 +148,22 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\FacultiesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SessionsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\WorksController.cs" />
+    <Compile Include="Areas\Admin\ViewModels\AssignedEmployees.cs" />
+    <Compile Include="Areas\Admin\ViewModels\RoleAssign.cs" />
     <Compile Include="Controllers\HallController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
-    <Compile Include="Controllers\StudentsController.cs" />
-    <Compile Include="Controllers\TeachersController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DecryptPass.cs" />
+    <Compile Include="Helpers\DeleteConfirm.cs" />
     <Compile Include="Helpers\EncryptPass.cs" />
     <Compile Include="Migrations\201806291356130_AddSessionID.cs" />
     <Compile Include="Migrations\201806291356130_AddSessionID.Designer.cs">
@@ -284,6 +289,10 @@
     <Compile Include="Migrations\201810191548247_addPostIdRequired.Designer.cs">
       <DependentUpon>201810191548247_addPostIdRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810210340171_RoleUserRole.cs" />
+    <Compile Include="Migrations\201810210340171_RoleUserRole.Designer.cs">
+      <DependentUpon>201810210340171_RoleUserRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\DataContext.cs" />
@@ -292,12 +301,14 @@
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostImage.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Teacher.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserCategory.cs" />
     <Compile Include="Models\UserImage.cs" />
+    <Compile Include="Models\UserRole.cs" />
     <Compile Include="Models\Work.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -327,6 +338,34 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Sessions\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Sessions\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Sessions\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Sessions\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Faculties\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Faculties\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Faculties\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Faculties\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Faculties\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Works\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Works\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Works\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Works\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Works\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Works\AssignedEmployees.cshtml" />
+    <Content Include="Areas\Admin\Views\Works\EditAssigned.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\AssignRole.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_userPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Assign.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\DeleteRole.cshtml" />
     <None Include="Properties\PublishProfiles\ehall - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\ehallpstu - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -377,6 +416,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Views\Hall\" />
   </ItemGroup>
   <ItemGroup>
@@ -485,6 +525,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810191548247_addPostIdRequired.resx">
       <DependentUpon>201810191548247_addPostIdRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810210340171_RoleUserRole.resx">
+      <DependentUpon>201810210340171_RoleUserRole.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
