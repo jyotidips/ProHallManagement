@@ -1,0 +1,361 @@
+
+@charset "UTF-8";
+@font-face {
+  font-family: 'Droid Arabic Kufi';
+  font-style: normal;
+  font-weight: 400;
+  src: url(http://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v5/DroidKufi-Regular.eot);
+  src: url(http://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v5/DroidKufi-Regular.eot?#iefix) format("embedded-opentype"), url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v5/DroidKufi-Regular.woff2) format("woff2"), url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v5/DroidKufi-Regular.woff) format("woff"), url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v5/DroidKufi-Regular.ttf) format("truetype"); }
+@font-face {
+  font-family: 'Droid Arabic Kufi';
+  font-style: normal;
+  font-weight: 700;
+  src: url(http://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v5/DroidKufi-Bold.eot);
+  src: url(http://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v5/DroidKufi-Bold.eot?#iefix) format("embedded-opentype"), url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v5/DroidKufi-Bold.woff2) format("woff2"), url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v5/DroidKufi-Bold.woff) format("woff"), url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v5/DroidKufi-Bold.ttf) format("truetype"); }
+@font-face {
+  font-family: 'Droid Arabic Naskh';
+  font-style: normal;
+  font-weight: 400;
+  src: url(http://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v6/DroidNaskh-Regular.eot);
+  src: url(http://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v6/DroidNaskh-Regular.eot?#iefix) format("embedded-opentype"), url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v6/DroidNaskh-Regular.woff2) format("woff2"), url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v6/DroidNaskh-Regular.woff) format("woff"), url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v6/DroidNaskh-Regular.ttf) format("truetype"); }
+@font-face {
+  font-family: 'Droid Arabic Naskh';
+  font-style: normal;
+  font-weight: 700;
+  src: url(http://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v6/DroidNaskh-Bold.eot);
+  src: url(http://themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v6/DroidNaskh-Bold.eot?#iefix) format("embedded-opentype"), url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v6/DroidNaskh-Bold.woff2) format("woff2"), url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v6/DroidNaskh-Bold.woff) format("woff"), url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v6/DroidNaskh-Bold.ttf) format("truetype"); }
+body {
+    direction: rtl;
+}
+.slick-slider {
+    direction: ltr;
+}
+.slick-slide {
+    direction: rtl;
+}
+.search-header.style2 > form > INPUT {
+    float: right;
+}
+.mega-menu-list > ul > li > span > i.badge {
+    margin: 0 6px 0 0;
+}
+header nav > ul > li .mega-menu-list > ul > li > a {
+    float: right;
+    margin-left: 12px;
+    margin-right: 0;
+}
+header nav > ul > li.menu-item-has-children ul a {
+    text-align: right;
+}
+.mini-post-thumb {
+    padding-left: 30px;
+    padding-right: 0;
+}
+.quick-metas > ul {
+    float: right;
+}
+.quick-metas > ul > li {
+    float: right;
+    padding-left: 24px;
+    padding-right: 0;
+}
+.quick-metas > ul > li > a > i {
+    margin: 0 0 0 8px;
+}
+.author-image-full {
+    padding-left: 140px;
+    padding-right: 0;
+}
+.author-details-sec > a {
+    float: right;
+}
+.post-detail2 > h2 {
+    text-align: center;
+}
+.post-detail2 .quick-metas > .quick-post-share {
+    margin-left: 0;
+    margin-right: 17px;
+}
+.heading1 > h2 {
+    text-align: center;
+}
+.heading1 > span {
+    text-align: center;
+}
+.about-blog-footer > .logo {
+    float: right;
+    width: auto;
+}
+.about-blog-footer > p {
+    padding-left: 70px;
+    padding-right: 0;
+}
+.subscribe_widget > form > input {
+    padding-left: 60px;
+    padding-right: 33px;
+}
+.subscribe_widget > form > button {
+    left: 8px;
+    right: auto;
+}
+.subscribe_widget > p {
+    padding: 0 0 0 50px;
+}
+.logo {
+    padding-left: 0;
+    padding-right: 55px;
+}
+.logo > a > i {
+    left: auto;
+    right: 0;
+}
+.logo > a > span {
+    text-align: right;
+}
+.team-info > span {
+    float: right;
+}
+.mega-menu {
+    text-align: right;
+}
+.mega-menu-heading > span {
+    display: inline-block;
+    margin: 0 7px 0 0;
+}
+header nav > ul > li.menu-item-has-children .mega-menu-list-2 > ul > li > a {
+    padding-left: 0;
+    padding-right: 20px;
+}
+header nav > ul > li.menu-item-has-children .mega-menu-list-2 > ul > li > a::before {
+    left: auto;
+    right: 0;
+}
+.quick-metas-style2 > ul > li {
+    float: right;
+}
+.quick-metas > .quick-post-share {
+    float: right;
+    margin-left: 0;
+    margin-right: 14px;
+}
+.post-tabs ul.nav > li {
+    float: right;
+}
+.post-tabs ul.nav > li > a {
+    margin: 0 0 0 10px;
+}
+.mini-title > h3 {
+    float: right;
+}
+.follow-us-sec > a {
+    float: right;
+    margin: 0 0 0 7px;
+}
+.post-slidy-detail {
+    text-align: right;
+}
+.post-slidy-detail > p {
+    float: right;
+}
+.post-slidy-detail .posted-by > h5 {
+    float: right;
+}
+.post-style3 > .post-detail1 > a {
+    float: left;
+}
+.post-style3.blockquote-post > .post-detail1 blockquote::before {
+    left: auto;
+    right: 0;
+}
+.post-featured-title1 > h3 {
+    text-align: right;
+}
+.slick-slide.slick-active.slick-center .post-featured1 > a {
+    -webkit-border-radius: 0 30px 30px 0;
+    -moz-border-radius: 0 30px 30px 0;
+    -ms-border-radius: 0 30px 30px 0;
+    -o-border-radius: 0 30px 30px 0;
+    border-radius: 0 30px 30px 0;
+
+    left: 0;
+    right: auto;
+}
+.post-author-share-post > .posted-by {
+    float: right;
+}
+.post-author-share-post > .posted-by > h5 > a {
+    float: right;
+}
+.post-author-share-post > .posted-by > h5 i {
+    float: right;
+    text-align: right;
+}
+.post-author-share-post > .quick-post-share {
+    float: right;
+    margin-left: 0;
+    margin-right: -26px;
+}
+.post-thumb1 {
+    padding-left: 50px;
+    padding-right: 0;
+}
+.post-detail1 > a {
+    float: right;
+}
+.blog-detail9 {
+    text-align: right;
+}
+.blog-detail9 > .posted-by {
+    left: -80px;
+    right: auto;
+}
+.blog-detail9 > a {
+    left: auto;
+    right: -10px;
+}
+.blog-detail9 {
+    left: 110px;
+    text-align: right;
+}
+.single-main-infos {
+    padding-left: 290px;
+    padding-right: 0;
+}
+.single-main-infos > .posted-by {
+    left: 0;
+    right: auto;
+}
+.single-infos-style2 > .single-main-infos > .posted-by {
+    left: auto;
+    right: 40px;
+}
+.search-result > img {
+    left: 0;
+}
+.gallery-detail > h3 {
+    padding: 0 0 0 30px;
+}
+.gallery-detail > ul > li {
+    float: right;
+}
+.blog-detail11 h2 {
+    text-align: left;
+}
+.post-tags > span {
+    float: right;
+    margin: 2px 0 0 10px;
+}
+.search_widget > form button {
+    left: 7px;
+    right: auto;
+}
+
+
+
+@media (max-width: 1200px) {
+.header-style1 .header-logobar1 .header-post-sec .mini-post > .mini-post-thumb {
+    padding-left: 15px;
+    padding-right: 0;
+}
+.header-style1 .header-logobar1 .header-post-sec .mini-post .quick-metas > ul > li {
+    padding-left: 11px;
+    padding-right: 0;
+}
+.author-image-full {
+    padding-left: 60px;
+}
+.post-thumb1 {
+    padding-left: 30px;
+}
+
+}
+
+
+@media (max-width: 980px) {
+.about-blog-footer > .logo {
+    display: inline-block;
+    float: none;
+}
+.single-main-infos {
+    padding-left: 0;
+}
+.single-main-infos > .posted-by {
+    float: right;
+}
+.blog-detail9 {
+    left: 0;
+}
+.blog-detail9 > a {
+    left: 0;
+    right: auto;
+    top: -10px;
+}
+.blog-detail9 > .posted-by {
+    float: right;
+}
+.search-result > img {
+    
+    -webkit-transform: translate(0px);
+    -moz-transform: translate(0px);
+    -ms-transform: translate(0px);
+    -o-transform: translate(0px);
+    transform: translate(0px);
+}
+
+
+
+
+}
+
+
+
+@media (max-width: 767px) {
+
+
+}
+
+
+
+@media (max-width: 480px)  {
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

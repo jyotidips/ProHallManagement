@@ -1,46 +1,265 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta name="description" content="Themenum is premium flat, clean, super flexible and fully responsive HTML Template, best suited for magazine, news or blog websites. The template builds on widgetized homepage with a lot of widgets with many styles. Which means you can build your homepage content and you can combine unlimited style. ">
+    <meta name="keywords" content="">
+    <meta name="author" content="themenum">
+
+    <title>Themenum - Best Blog, CV and Video HTML Template </title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" type="text/css" /><!-- Bootstrap -->
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" type="text/css" /><!-- Icons -->
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.css" type="text/css" /><!-- Owl Carousal -->
+
+    <link rel="stylesheet" href="~/Content/css/style.css" type="text/css" /><!-- Style -->
+    <link rel="stylesheet" href="~/Content/css/responsive.css" type="text/css" /><!-- Responsive -->
+    <link rel="stylesheet" href="~/Content/css/colors/colors.css" type="text/css" /><!-- color -->
+    @*<meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Students", "Index", "Students")</li>
-                    <li>@Html.ActionLink("Teachers", "Index", "Teachers")</li>
-                    <li>@Html.ActionLink("Employees", "Index", "Employees")</li>
-                </ul>
-                @Html.Partial("_LoginTopPartial")
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Students", "Index", "Students")</li>
+                        <li>@Html.ActionLink("Teachers", "Index", "Teachers")</li>
+                        <li>@Html.ActionLink("Employees", "Index", "Employees")</li>
+                    </ul>
+                    @Html.Partial("_LoginTopPartial")
+                </div>
             </div>
         </div>
+
+
+        <div>
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Pro Hall Management System</p>
+            </footer>
+        </div>*@
+    <div class="page-loading">
+        <img src="~/Content/assets/loader.gif" alt="" />
     </div>
+    <div class="theme-layout">
+        <div class="responsive-menu-area">
 
 
-    <div>
+
+            <div class="top-bar light">
+                <div class="container">
+                    <div class="quick-topbar-link">
+                        <a href="#" title="">Home</a>
+                        <a href="#" title="">About Us</a>
+                        <a href="#" title="">Pages</a>
+                        <a href="#" title="">Contact</a>
+                    </div><!-- Quick TopBar Links -->
+                </div>
+            </div><!-- Top Bar -->
+
+
+            <div class="responsive-header-logo">
+                <div class="logo">
+                    <a href="blog-master-right-sidebar.html" title="">
+                        <i class="fa fa-ils"></i>
+                        <strong>themenum</strong>
+                        <span>Best Blog Ever</span>
+                    </a>
+                </div><!-- Logo -->
+                <div class="search-header style2">
+                    <form>
+                        <input type="text" placeholder="Search here" />
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div><!-- Search Header -->
+                <span class="open-menu-responsive"><i class="fa fa-th"></i></span>
+            </div>
+
+
+            <div class="responsive-menu">
+                <div class="close-btn"><span><i class="fa fa-times"></i>Close</span></div><!-- Close Btn -->
+                <ul>
+                    <li><a href="#" title="">Home</a></li>
+
+                    <li><a href="contact.html" title="">Contact Us</a></li>
+                    <li><a href="rtl.html" title="">RTL Demo</a></li>
+                </ul>
+            </div>
+
+
+        </div>
+
+        <header class="header-style1 stick">
+
+
+
+            <div class="header-logobar1" style="max-height: 100px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="logo">
+                                <a href="blog-master-right-sidebar.html" title="">
+                                    <i class="fa fa-ils"></i>
+                                    <strong>themenum</strong>
+                                    <span>Best Blog Ever</span>
+                                </a>
+                            </div><!-- Logo -->
+                        </div>
+                        <div class="col-md-4">
+                            <div class="header-post-sec">
+                                <div class="row">
+                                    <h2>M. Keramot Ali HAll</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="menu-bar1">
+                <div class="container">
+                    <div class="menu-style1" style="margin-left: 300px;">
+                        <nav>
+                            <ul>
+                                <li><a href="#" title="">Home</a></li>
+
+                                <li class="menu-item-has-children">
+                                    <a href="#" title="">Gallery</a>
+                                    <ul>
+                                        <li><a href="gallery-3-column.html" title="">Gallery 3 Col</a></li>
+                                        <li><a href="gallery-left-sidebar.html" title="">Gallery Sidebar Left</a></li>
+                                        <li><a href="gallery-right-sidebar.html" title="">Gallery Sidebar Right</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="contact.html" title="">Contact Us</a></li>
+                                <li><a href="rtl.html" title="">RTL Demo</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="search-header">
+                        <form>
+                            <input type="text" placeholder="Search here" />
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="account-popup-sec">
+            <div class="account-popup-area">
+                <div class="account-popup">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="account-user">
+                                <div class="logo">
+                                    <a href="blog-master-right-sidebar.html" title="">
+                                        <i class="fa fa-ils"></i>
+                                        <strong>themenum</strong>
+                                        <span>Best Blog Ever</span>
+                                    </a>
+                                </div><!-- Logo -->
+                                <p>
+                                    <a href="#" title="">Create an Account</a> it takes less than a minute. If you have already account please
+                                    LOGIN
+                                </p>
+                                <form>
+                                    <h4>Login Form</h4>
+                                    <div class="field">
+                                        <input type="text" placeholder="Username" />
+                                    </div>
+                                    <div class="field">
+                                        <input type="password" placeholder="Password" />
+                                    </div>
+                                    <div class="field">
+                                        <input type="submit" value="SEND NOW" class="theme-btn" />
+                                    </div>
+                                </form>
+                                <i>OR</i>
+                                <span>LOGIN WITH</span>
+                                <ul class="social-btns">
+                                    <li><a href="#" title=""><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#" title=""><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a href="#" title=""><i class="fa fa-twitter"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="close-popup"><i class="fa fa-close"></i></span>
+                </div>
+            </div>
+        </div><!-- Account Popup Sec -->
+
+
         @RenderBody()
-        <hr />
+
+
+        <!-- footer -->
         <footer>
-            <p>&copy; @DateTime.Now.Year - Pro Hall Management System</p>
+
+            <div class="bottom-line">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="quick-link-bottom">
+                                <ul>
+                                    <li><a href="#" title="">Home</a></li>
+                                    <li><a href="#" title="">Demos</a></li>
+                                    <li><a href="#" title="">Category</a></li>
+                                    <li><a href="#" title="">Features</a></li>
+                                    <li><a href="#" title="">pages</a></li>
+                                </ul>
+                            </div>
+                            <div class="simple-social">
+                                <ul>
+                                    <li><a href="#" title=""><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#" title=""><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#" title=""><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a href="#" title=""><i class="fa fa-yahoo"></i></a></li>
+                                    <li><a href="#" title=""><i class="fa fa-pinterest"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- Bottom Line -->
         </footer>
+
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    <!-- Script -->
+    <script type="text/javascript" src="~/Content/js/modernizr.js"></script><!-- Modernizer -->
+    <script type="text/javascript" src="~/Content/js/jquery-2.1.1.js"></script><!-- Jquery -->
+    <script type="text/javascript" src="~/Content/js/script.js"></script><!-- Script -->
+    <script type="text/javascript" src="~/Content/js/bootstrap.min.js"></script><!-- Bootstrap -->
+    <script type="text/javascript" src="~/Content/js/slick.min.js"></script><!-- HTML -->
+    <script type="text/javascript" src="~/Content/js/scrolly.js"></script><!-- Parallax -->
+    <script type="text/javascript" src="~/Content/js/jquery.poptrox.min.js"></script><!-- PopTrox -->
+    <script type="text/javascript" src="~/Content/js/dylay.js"></script><!-- Dylay -->
+    <script type="text/javascript" src="~/Content/js/post-featured-slick.js"></script><!-- Dylay -->
+
+
     @RenderSection("scripts", required: false)
 </body>
 </html>
