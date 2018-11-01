@@ -17,7 +17,7 @@ namespace ProHallManagement.Controllers
         // GET: Posts
         public ActionResult Index()
         {
-            var posts = db.Posts.Include(p => p.Student);
+            var posts = db.Posts.Include(p => p.User);
             return View(posts.ToList());
         }
 
@@ -68,7 +68,7 @@ namespace ProHallManagement.Controllers
                 return HttpNotFound();
             }
 
-            post.Status = false ;
+            post.Status = false;
             db.SaveChanges();
 
 

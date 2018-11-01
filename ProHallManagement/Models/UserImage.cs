@@ -14,5 +14,22 @@ namespace ProHallManagement.Models
 
         public int UserId { get; set; }
         public User User { get; set; }
+
+        public int AlbumId { get; set; }
+        public Album Album { get; set; }
+
+        public bool IsProfilePic { get; set; }
+    }
+
+
+
+    public class Album
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int UserId { get; set; }
+
+
+        public ICollection<UserImage> UserImages { get; set; }
     }
 }

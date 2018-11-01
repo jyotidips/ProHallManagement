@@ -26,8 +26,8 @@ namespace ProHallManagement.Models
 
 
 
-        public int StudentId { get; set; }
-        public virtual Student Student { get; set; }
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
 

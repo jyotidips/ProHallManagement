@@ -30,6 +30,7 @@ namespace ProHallManagement.Models
         public DbSet<UserRole> UserRoles { get; set; }
 
         public DbSet<UserImage> UserImages { get; set; }
+        public DbSet<Album> Albums { get; set; }
 
 
     }

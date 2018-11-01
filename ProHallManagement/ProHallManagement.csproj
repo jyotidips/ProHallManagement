@@ -56,6 +56,7 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -157,6 +158,7 @@
     <Compile Include="Areas\Admin\ViewModels\RoleAssign.cs" />
     <Compile Include="Controllers\HallController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -292,6 +294,14 @@
     <Compile Include="Migrations\201810210340171_RoleUserRole.cs" />
     <Compile Include="Migrations\201810210340171_RoleUserRole.Designer.cs">
       <DependentUpon>201810210340171_RoleUserRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811012024353_tableAlbum.cs" />
+    <Compile Include="Migrations\201811012024353_tableAlbum.Designer.cs">
+      <DependentUpon>201811012024353_tableAlbum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811012041459_tableUserPostUpdate.cs" />
+    <Compile Include="Migrations\201811012041459_tableUserPostUpdate.Designer.cs">
+      <DependentUpon>201811012041459_tableUserPostUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -658,6 +668,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Views\Hall\" />
+    <Folder Include="Views\Image\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -768,6 +779,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810210340171_RoleUserRole.resx">
       <DependentUpon>201810210340171_RoleUserRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811012024353_tableAlbum.resx">
+      <DependentUpon>201811012024353_tableAlbum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811012041459_tableUserPostUpdate.resx">
+      <DependentUpon>201811012041459_tableUserPostUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

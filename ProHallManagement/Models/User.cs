@@ -29,7 +29,8 @@ namespace ProHallManagement.Models
 
         public ICollection<UserRole> UserRoles { get; set; }
 
-
+        public ICollection<Album> Albums { get; set; }
+        public ICollection<Post> Posts { get; set; }
 
     }
 }
