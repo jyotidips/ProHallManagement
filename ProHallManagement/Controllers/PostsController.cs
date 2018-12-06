@@ -36,6 +36,10 @@ namespace ProHallManagement.Controllers
             return View(post);
         }
 
+
+
+
+
         public ActionResult SetStatusTrue(int id)
         {
             if (id == null)
@@ -47,10 +51,8 @@ namespace ProHallManagement.Controllers
             {
                 return HttpNotFound();
             }
-
             post.Status = true;
             db.SaveChanges();
-
 
             return RedirectToAction("Index");
         }

@@ -1,13 +1,20 @@
 ﻿@model ProHallManagement.ViewModel.LoginViewModel
 
 @{
-    /**/
+                /**/
 
-    ViewBag.Title = "SignIn";
-    Layout = "~/Views/Shared/_login.cshtml";
+                /**/
+
+                ViewBag.Title = "SignIn";
+                Layout = "~/Views/Shared/_login.cshtml";
 }
 
 <h2>SignIn</h2>
+@if (ViewBag.errorin != null)
+{
+    <h3 class="alert alert-danger">@ViewBag.errorin</h3>
+}
+
 
 @using (Html.BeginForm("SignIn", "Users"))
 {
@@ -27,6 +34,7 @@
             <div class="col-md-10">
 
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+
 
             </div>
         </div>

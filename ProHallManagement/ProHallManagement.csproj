@@ -303,6 +303,10 @@
     <Compile Include="Migrations\201811012041459_tableUserPostUpdate.Designer.cs">
       <DependentUpon>201811012041459_tableUserPostUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812021922217_Adding_IsCoverPic_AttributetoUserImage_Table.cs" />
+    <Compile Include="Migrations\201812021922217_Adding_IsCoverPic_AttributetoUserImage_Table.Designer.cs">
+      <DependentUpon>201812021922217_Adding_IsCoverPic_AttributetoUserImage_Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\DataContext.cs" />
@@ -322,6 +326,7 @@
     <Compile Include="Models\Work.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\ChangePassword.cs" />
     <Compile Include="ViewModel\EmployeeViewModel.cs" />
     <Compile Include="ViewModel\FacultyView.cs" />
     <Compile Include="ViewModel\HallView.cs" />
@@ -335,7 +340,146 @@
     <Compile Include="ViewModel\UserView.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\css\animate.min.css" />
+    <Content Include="Content\assets\css\bootstrap-rtl.css" />
+    <Content Include="Content\assets\css\bootstrap.css" />
+    <Content Include="Content\assets\css\calendar\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\assets\css\calendar\bootstrap-material-datetimepicker.css" />
+    <Content Include="Content\assets\css\calendar\fullcalendar.min.css" />
+    <Content Include="Content\assets\css\calendar\fullcalendar.print.css" />
+    <Content Include="Content\assets\css\datatables.min.css" />
+    <Content Include="Content\assets\css\dataTables.responsive.css" />
+    <Content Include="Content\assets\css\deluxe-admin-rtl.css" />
+    <Content Include="Content\assets\css\deluxe-admin.css" />
+    <Content Include="Content\assets\css\error.css" />
+    <Content Include="Content\assets\css\fileinput.min.css" />
+    <Content Include="Content\assets\css\font\VideoJSd41d.html" />
+    <Content Include="Content\assets\css\gallery\justifiedGallery.min.css" />
+    <Content Include="Content\assets\css\gallery\light-gallery.css" />
+    <Content Include="Content\assets\css\hover.css" />
+    <Content Include="Content\assets\css\hover.min.css" />
+    <Content Include="Content\assets\css\jquery-jvectormap.css" />
+    <Content Include="Content\assets\css\material-design-iconic-font.min.css" />
+    <Content Include="Content\assets\css\metisMenu.min.css" />
+    <Content Include="Content\assets\css\ripple.min.css" />
+    <Content Include="Content\assets\css\social-buttons.css" />
+    <Content Include="Content\assets\css\sweet-alert.min.css" />
+    <Content Include="Content\assets\css\video-js.min.css" />
+    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\assets\fonts\lgd641.svg" />
     <Content Include="Content\assets\header-bg.jpg" />
+    <Content Include="Content\assets\img\avatar.jpg" />
+    <Content Include="Content\assets\img\bg-black.jpg" />
+    <Content Include="Content\assets\img\bg-material.png" />
+    <Content Include="Content\assets\img\bg-profile.jpg" />
+    <Content Include="Content\assets\img\cards.jpg" />
+    <Content Include="Content\assets\img\ecommerce\watch-black.jpg" />
+    <Content Include="Content\assets\img\ecommerce\watch-blue.jpg" />
+    <Content Include="Content\assets\img\ecommerce\watch-white.jpg" />
+    <Content Include="Content\assets\img\ecommerce\watch-yellow.jpg" />
+    <Content Include="Content\assets\img\flot\bars.png" />
+    <Content Include="Content\assets\img\flot\bars_active.png" />
+    <Content Include="Content\assets\img\flot\lines.png" />
+    <Content Include="Content\assets\img\flot\lines_active.png" />
+    <Content Include="Content\assets\img\gallery\1.jpg" />
+    <Content Include="Content\assets\img\gallery\10.jpg" />
+    <Content Include="Content\assets\img\gallery\11.jpg" />
+    <Content Include="Content\assets\img\gallery\12.jpg" />
+    <Content Include="Content\assets\img\gallery\13.jpg" />
+    <Content Include="Content\assets\img\gallery\14.jpg" />
+    <Content Include="Content\assets\img\gallery\15.jpg" />
+    <Content Include="Content\assets\img\gallery\16.jpg" />
+    <Content Include="Content\assets\img\gallery\17.jpg" />
+    <Content Include="Content\assets\img\gallery\18.jpg" />
+    <Content Include="Content\assets\img\gallery\19.jpg" />
+    <Content Include="Content\assets\img\gallery\2.jpg" />
+    <Content Include="Content\assets\img\gallery\20.jpg" />
+    <Content Include="Content\assets\img\gallery\21.jpg" />
+    <Content Include="Content\assets\img\gallery\22.jpg" />
+    <Content Include="Content\assets\img\gallery\23.jpg" />
+    <Content Include="Content\assets\img\gallery\24.jpg" />
+    <Content Include="Content\assets\img\gallery\3.jpg" />
+    <Content Include="Content\assets\img\gallery\4.jpg" />
+    <Content Include="Content\assets\img\gallery\5.jpg" />
+    <Content Include="Content\assets\img\gallery\6.jpg" />
+    <Content Include="Content\assets\img\gallery\7.jpg" />
+    <Content Include="Content\assets\img\gallery\8.jpg" />
+    <Content Include="Content\assets\img\gallery\9.jpg" />
+    <Content Include="Content\assets\img\gallery\poster1.jpg" />
+    <Content Include="Content\assets\img\gallery\poster2.jpg" />
+    <Content Include="Content\assets\img\gallery\poster3.jpg" />
+    <Content Include="Content\assets\img\gallery\poster4.jpg" />
+    <Content Include="Content\assets\img\loading-sm.html" />
+    <Content Include="Content\assets\img\loading.gif" />
+    <Content Include="Content\assets\img\play-button.png" />
+    <Content Include="Content\assets\img\video-play.png" />
+    <Content Include="Content\assets\img\vimeo-play.png" />
+    <Content Include="Content\assets\img\youtube-play.png" />
+    <Content Include="Content\assets\js\bootstrap-notify.min.js" />
+    <Content Include="Content\assets\js\bootstrap.min.js" />
+    <Content Include="Content\assets\js\calendar\bootstrap-datetimepicker.min.js" />
+    <Content Include="Content\assets\js\calendar\bootstrap-material-datetimepicker.js" />
+    <Content Include="Content\assets\js\calendar\fullcalendar.min.js" />
+    <Content Include="Content\assets\js\calendar\moment-with-locales.js" />
+    <Content Include="Content\assets\js\charts\chartjs\chart.min.js" />
+    <Content Include="Content\assets\js\charts\flot.tooltip\jquery.flot.tooltip.min.js" />
+    <Content Include="Content\assets\js\charts\flot\excanvas.min.js" />
+    <Content Include="Content\assets\js\charts\flot\jquery.flot.js" />
+    <Content Include="Content\assets\js\charts\flot\jquery.flot.pie.js" />
+    <Content Include="Content\assets\js\charts\flot\jquery.flot.resize.js" />
+    <Content Include="Content\assets\js\charts\flot\jquery.flot.time.js" />
+    <Content Include="Content\assets\js\charts\morris\morris.min.js" />
+    <Content Include="Content\assets\js\datatables.min.js" />
+    <Content Include="Content\assets\js\dataTables.responsive.js" />
+    <Content Include="Content\assets\js\fileinput\fileinput.min.js" />
+    <Content Include="Content\assets\js\fileinput\fileinput.script.js" />
+    <Content Include="Content\assets\js\fileinput\plugins\canvas-to-blob.min.js" />
+    <Content Include="Content\assets\js\fileinput\plugins\purify.min.js" />
+    <Content Include="Content\assets\js\fileinput\plugins\sortable.min.js" />
+    <Content Include="Content\assets\js\fileinput\themes\fa\theme.js" />
+    <Content Include="Content\assets\js\gallery\jquery.justifiedGallery.min.js" />
+    <Content Include="Content\assets\js\gallery\lg-autoplay.min.js" />
+    <Content Include="Content\assets\js\gallery\lg-fullscreen.min.js" />
+    <Content Include="Content\assets\js\gallery\lg-thumbnail.min.js" />
+    <Content Include="Content\assets\js\gallery\lg-video.js" />
+    <Content Include="Content\assets\js\gallery\lg-zoom.min.js" />
+    <Content Include="Content\assets\js\gallery\lightgallery.min.js" />
+    <Content Include="Content\assets\js\jquery-2.2.4.min.js" />
+    <Content Include="Content\assets\js\jquery.counterup.min.js" />
+    <Content Include="Content\assets\js\jquery.knob.min.js" />
+    <Content Include="Content\assets\js\jquery.mousewheel.min.js" />
+    <Content Include="Content\assets\js\jquery.slimscroll.min.js" />
+    <Content Include="Content\assets\js\maps\gmaps.min.js" />
+    <Content Include="Content\assets\js\maps\jvectormap\country\jquery-jvectormap-de-mill.js" />
+    <Content Include="Content\assets\js\maps\jvectormap\country\jquery-jvectormap-fr_regions-mill.js" />
+    <Content Include="Content\assets\js\maps\jvectormap\country\jquery-jvectormap-ru_fd-merc.js" />
+    <Content Include="Content\assets\js\maps\jvectormap\country\jquery-jvectormap-uk_regions-mill.js" />
+    <Content Include="Content\assets\js\maps\jvectormap\country\jquery-jvectormap-us-mill.js" />
+    <Content Include="Content\assets\js\maps\jvectormap\country\jquery-jvectormap-us-ny-newyork-mill.js" />
+    <Content Include="Content\assets\js\maps\jvectormap\country\jquery-jvectormap-world-mill.js" />
+    <Content Include="Content\assets\js\maps\jvectormap\gdp-data.js" />
+    <Content Include="Content\assets\js\maps\jvectormap\jquery.jvectormap.min.js" />
+    <Content Include="Content\assets\js\metisMenu.min.js" />
+    <Content Include="Content\assets\js\modernizr.js" />
+    <Content Include="Content\assets\js\pages.html" />
+    <Content Include="Content\assets\js\prettify.js" />
+    <Content Include="Content\assets\js\raphael\raphael.min.js" />
+    <Content Include="Content\assets\js\ripple.min.js" />
+    <Content Include="Content\assets\js\scripts\calendar.js" />
+    <Content Include="Content\assets\js\scripts\chartjs.js" />
+    <Content Include="Content\assets\js\scripts\dashboard.js" />
+    <Content Include="Content\assets\js\scripts\error.js" />
+    <Content Include="Content\assets\js\scripts\flot.js" />
+    <Content Include="Content\assets\js\scripts\init-rtl.js" />
+    <Content Include="Content\assets\js\scripts\init.js" />
+    <Content Include="Content\assets\js\scripts\maps.js" />
+    <Content Include="Content\assets\js\scripts\morris.js" />
+    <Content Include="Content\assets\js\scripts\notifications.js" />
+    <Content Include="Content\assets\js\sweetalert.min.js" />
+    <Content Include="Content\assets\js\typed.min.js" />
+    <Content Include="Content\assets\js\video.min.js" />
+    <Content Include="Content\assets\js\videojs-ie8.js" />
+    <Content Include="Content\assets\js\waypoints.min.js" />
     <Content Include="Content\assets\loader.gif" />
     <Content Include="Content\assets\login-bg.jpg" />
     <Content Include="Assets\sidebar.css" />
@@ -616,6 +760,18 @@
     <Content Include="Content\css\fonts\fontawesome-webfont3e6e.woff" />
     <Content Include="Content\css\fonts\fontawesome-webfont3e6e.woff2" />
     <Content Include="Content\css\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\assets\fonts\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="Content\assets\fonts\lgd41d.eot" />
+    <Content Include="Content\assets\fonts\lgd641.eot" />
+    <Content Include="Content\assets\fonts\lgd641.ttf" />
+    <Content Include="Content\assets\fonts\lgd641.woff" />
+    <Content Include="Content\assets\fonts\Material-Design-Iconic-Fontd1f1.ttf" />
+    <Content Include="Content\assets\fonts\Material-Design-Iconic-Fontd1f1.woff" />
+    <Content Include="Content\assets\fonts\Material-Design-Iconic-Fontd1f1.woff2" />
     <None Include="Properties\PublishProfiles\ehall - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\ehallpstu - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -663,10 +819,16 @@
     <Content Include="Views\Users\Account.cshtml" />
     <Content Include="Views\Shared\_loginTopPartial.cshtml" />
     <Content Include="Views\Shared\_login.cshtml" />
+    <Content Include="Views\Shared\_account.cshtml" />
+    <Content Include="Views\Users\UserProfile.cshtml" />
+    <Content Include="Views\Users\Change.cshtml" />
+    <Content Include="Views\Users\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Assets\Images\" />
+    <Folder Include="CustomValidations\" />
     <Folder Include="Views\Hall\" />
     <Folder Include="Views\Image\" />
   </ItemGroup>
@@ -785,6 +947,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811012041459_tableUserPostUpdate.resx">
       <DependentUpon>201811012041459_tableUserPostUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812021922217_Adding_IsCoverPic_AttributetoUserImage_Table.resx">
+      <DependentUpon>201812021922217_Adding_IsCoverPic_AttributetoUserImage_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

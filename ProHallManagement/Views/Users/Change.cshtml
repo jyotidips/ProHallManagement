@@ -1,0 +1,129 @@
+﻿@model ProHallManagement.ViewModel.UserView
+@{
+    ViewBag.Title = "Change";
+    Layout = "~/Views/Shared/_account.cshtml";
+}
+<main>
+
+    <div id="page-wrapper" style="min-height: 616px;">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">Change Image</h1>
+                <ol class="breadcrumb">
+                    <li class="active">
+                        <a href="">Home</a> <i class="zmdi zmdi-circle"></i> Change Image
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+
+        <div class="card card-block">
+            <h4 class="card-title">Upload/Remove Picture</h4>
+
+            <div class="card-text">
+
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                        <form id="AddImage"></form>
+                        <div class="card">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Upload Profile Picture</li>
+                                @if (ViewBag.successpro != null)
+                                {
+                                    <li class="list-group-item" style="color: #9acd32">
+                                        @ViewBag.successpro
+                                    </li>
+                                }
+
+                                @{
+                                    if (ViewBag.profileImgUrl != null)
+                                    {
+
+                                        <li class="list-group-item"><img class="img-responsive" src="@ViewBag.profileImgUrl" alt="Card image cap"></li>
+                                        <li class="list-group-item">
+                                            @Html.ActionLink("Remove", "RemovePro", new { id = ViewBag.proImageId }, new { @class = " btn  btn-success card-link " })
+                                        </li>
+                                    }
+                                }
+
+                            </ul>
+
+                            @if (ViewBag.profileImgUrl == null)
+                            {
+                                <div class="card-block">
+
+                                    @using (Html.BeginForm("SaveProfileImage", "Users", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                    {
+                                        <input name="ImageFile" href="" class="form-control card-link" type="file" required>
+                                        <button type="submit" class=" btn  btn-success card-link" style="margin-top: 10px;">Upload</button>
+                                    }
+                                </div>
+                            }
+
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="card">
+
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Upload Cover Picture</li>
+                                @if (ViewBag.successcover != null)
+                                {
+                                    <li class="list-group-item" style="color: #9acd32">
+                                        @ViewBag.successcover
+                                    </li>
+                                }
+
+                                @{
+                                    if (ViewBag.coverImgUrl != null)
+                                    {
+
+                                        <li class="list-group-item"><img class="img-responsive" src="@ViewBag.coverImgUrl" alt="Card image cap"></li>
+                                        <li class="list-group-item">
+                                            @*<a href="RemoveCover" class=" btn  btn-success card-link">Remove</a>*@
+                                            @Html.ActionLink("Remove", "RemoveCover", new { id = ViewBag.coverImageId }, new { @class = " btn  btn-success card-link " })
+                                        </li>
+
+                                    }
+                                }
+                            </ul>
+
+                            @if (ViewBag.coverImgUrl == null)
+                            {
+                                <div class="card-block">
+
+
+                                    @using (Html.BeginForm("SaveCoverImage", "Users", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                    {
+                                        <input name="ImageFile" href="" class="form-control card-link" type="file" required>
+                                        <button type="submit" class=" btn  btn-success card-link" style="margin-top: 10px;">Upload</button>
+                                    }
+
+                                </div>
+                            }
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>

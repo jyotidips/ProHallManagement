@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using System.IO;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using ProHallManagement.ViewModel;
+using WebGrease.Css.Extensions;
 
 namespace ProHallManagement.Controllers
 {
@@ -13,6 +16,7 @@ namespace ProHallManagement.Controllers
     {
         // GET: Users
         private string _error = "";
+
         private readonly DataContext _context;
         private bool _act;
         public UsersController()
@@ -60,8 +64,6 @@ namespace ProHallManagement.Controllers
                 Work = works,
                 UserCategory = userCat
             };
-
-
             if (id == 1)
             {
                 if (_context.Users.SingleOrDefault(u => u.Email == user.Student.Email) != null)
@@ -70,9 +72,6 @@ namespace ProHallManagement.Controllers
 
                     return View(viewmodel);
                 }
-
-
-
                 var newuser = new User
                 {
                     Name = user.Student.Name,
@@ -100,6 +99,9 @@ namespace ProHallManagement.Controllers
                 _context.Students.Add(newstudent);
                 _context.Users.Add(newuser);
                 _context.SaveChanges();
+                //------------------------------------------------------------------------
+
+
                 ViewBag.success = "You are Registered succesfully";
 
                 return View(viewmodel);
@@ -145,6 +147,9 @@ namespace ProHallManagement.Controllers
 
                 _context.Teachers.Add(newteacher);
                 _context.Users.Add(newuser);
+
+
+
                 _context.SaveChanges();
 
                 ViewBag.success = "You are Registered succesfully";
@@ -175,8 +180,12 @@ namespace ProHallManagement.Controllers
                     Phone = user.Employee.Phone
                 };
 
+
                 _context.Employees.Add(newemployee);
                 _context.Users.Add(newuser);
+
+
+
                 _context.SaveChanges();
 
                 ViewBag.success = "You are Registered succesfully";
@@ -193,10 +202,19 @@ namespace ProHallManagement.Controllers
             return View();
         }
 
+
+
         [HttpPost]
         public ActionResult SignIn(LoginViewModel signinVm)
         {
-            SignInFn(signinVm);
+            var login = SignInFn(signinVm);
+            if (login == false)
+            {
+                ViewBag.errorin = "Your Login Credential is invalid";
+                return View("SignIn");
+            }
+
+
             return RedirectToAction("Account", "Users");
         }
 
@@ -207,6 +225,11 @@ namespace ProHallManagement.Controllers
         [HttpGet]
         public ActionResult Account()
         {
+            if (Session["Id"] == null)
+            {
+                return RedirectToAction("SignIn");
+            }
+
             var email = Session["Email"];
 
             if (email != null)
@@ -262,30 +285,412 @@ namespace ProHallManagement.Controllers
             }
 
         }
+        //------------------------------------------------Account Action Done!!---------------------------------------
 
 
-
-
-
-        public void SignInFn(LoginViewModel signinVm)
+        //Basic view loader for Profile
+        public ActionResult UserProfile()
         {
+            if (Session["Id"] == null)
+            {
+                return RedirectToAction("SignIn");
+            }
+
+            var id = (int)Session["Id"];
+
+            var userdata = _context.Users.Find(id);
+
+
+
+
+            var viewmodel = new UserView
+            {
+                User = userdata
+            };
+
+
+            return View(viewmodel);
+        }
+
+
+
+        //Update User Profile Data
+        [HttpPost]
+        public ActionResult UpdateProfile(UserView uv)
+        {
+            if (Session["Id"] == null)
+            {
+                return RedirectToAction("SignIn");
+            }
+
+            var email = Session["Email"];
+
+            var userData = _context.Users.SingleOrDefault(u => u.Email == email);
+
+            var stdData = _context.Students.SingleOrDefault(c => c.Email == email);
+
+
+            var teachData = _context.Teachers.SingleOrDefault(t => t.Email == email);
+
+            var empData = _context.Employees.SingleOrDefault(e => e.Phone == email);
+
+
+            //checks if the user is existed in Both User and Student table
+            if (userData != null && stdData != null)
+            {
+
+                if (uv.User.Email != uv.User.ConfirmEmail && uv.User.Password != uv.User.ConformPassword)
+                {
+                    return View("UserProfile", uv);
+                }
+
+                userData.Name = uv.User.Name;
+                userData.Email = uv.User.Email;
+                userData.Password = uv.User.Password;
+
+
+                stdData.Name = uv.User.Name;
+                stdData.Email = uv.User.Email;
+
+                _context.Users.Add(userData);
+                _context.Students.Add(stdData);
+                _context.SaveChanges();
+            }
+
+            //checks if the user is existed in Both User and Teacher table
+            else if (userData != null && teachData != null)
+            {
+
+                if (uv.User.Email != uv.User.ConfirmEmail && uv.User.Password != uv.User.ConformPassword)
+                {
+                    return View("UserProfile", uv);
+                }
+
+                userData.Name = uv.User.Name;
+                userData.Email = uv.User.Email;
+                userData.Password = uv.User.Password;
+
+
+                teachData.Name = uv.User.Name;
+                teachData.Email = uv.User.Email;
+
+                _context.Users.Add(userData);
+                _context.Teachers.Add(teachData);
+                _context.SaveChanges();
+            }
+
+            //checks if the user is existed in Both User and Employee table
+            else if (userData != null && empData != null)
+            {
+
+                if (uv.User.Email != uv.User.ConfirmEmail && uv.User.Password != uv.User.ConformPassword)
+                {
+                    return View("UserProfile", uv);
+                }
+
+                userData.Name = uv.User.Name;
+                userData.Email = uv.User.Email;
+                userData.Password = uv.User.Password;
+
+
+                empData.Name = uv.User.Name;
+                empData.Phone = uv.User.Email;
+
+
+
+                _context.Users.Add(userData);
+                _context.Employees.Add(empData);
+                _context.SaveChanges();
+            }
+            else
+            {
+                ViewBag.error = "Data is missing Somewhere";
+                return View("UserProfile");
+            }
+            return RedirectToAction("UserProfile");
+        }
+
+        //------------------------------------------------Update Profile Done!!---------------------------------------
+
+
+
+        //Change Image
+        public ActionResult Change()
+        {
+
+            if (Session["Id"] == null)
+            {
+                return RedirectToAction("SignIn");
+            }
+
+            var userId = (int)Session["Id"];
+
+            if (Session["successRPP"] != null)
+            {
+                var successMsgPro = Session["successRPP"];
+                ViewBag.successpro = successMsgPro;
+            }
+
+            if (Session["successRCP"] != null)
+            {
+                var successMsgCover = Session["successRCP"];
+                ViewBag.successcover = successMsgCover;
+            }
+
+
+            var profileImgUrl = _context.UserImages.Where(i => i.IsProfilePic == true && i.UserId == userId).FirstOrDefault();
+            var coverImgUrl = _context.UserImages.Where(i => i.IsCoverPic == true && i.UserId == userId).FirstOrDefault();
+
+
+            if (profileImgUrl != null)
+            {
+                ViewBag.proImageId = profileImgUrl.Id;
+                ViewBag.profileImgUrl = profileImgUrl.ImageUrl;
+            }
+
+            if (coverImgUrl != null)
+            {
+                ViewBag.coverImageId = coverImgUrl.Id;
+                ViewBag.coverImgUrl = coverImgUrl.ImageUrl;
+            }
+
+
+            Session["successRPP"] = null;
+            Session["successRCP"] = null;
+
+            return View();
+        }
+
+
+        public ActionResult RemovePro(int id)
+        {
+            if (Session["Id"] == null)
+            {
+                return RedirectToAction("SignIn");
+            }
+
+            var image = _context.UserImages.Where(i => i.Id == id).First();
+            image.IsProfilePic = false;
+
+            _context.Entry(image).State = EntityState.Modified;
+            _context.SaveChanges();
+            Session["successRPP"] = "Successfully Removed Profile Picture";
+            return RedirectToAction("Change");
+        }
+
+        public ActionResult RemoveCover(int id)
+        {
+            if (Session["Id"] == null)
+            {
+                return RedirectToAction("SignIn");
+            }
+            var image = _context.UserImages.Where(i => i.Id == id).First();
+
+            image.IsCoverPic = false;
+
+            _context.Entry(image).State = EntityState.Modified;
+            _context.SaveChanges();
+            Session["successRCP"] = "Successfully Removed Cover Picture";
+
+            return RedirectToAction("Change");
+        }
+        public ActionResult ChangePassword()
+        {
+            if (Session["Id"] == null)
+            {
+                return RedirectToAction("SignIn");
+            }
+
+            var id = (int)Session["Id"];
+
+
+            var viewm = new UserView
+            {
+                ChangePassword = new ChangePassword
+                {
+                    Id = id
+                }
+            };
+
+            return View(viewm);
+        }
+
+
+        [HttpPost]
+        public ActionResult ChangePassword(UserView userView)
+        {
+
+            if (Session["Id"] == null)
+            {
+                return RedirectToAction("SignIn");
+            }
+            var id = (int)Session["Id"];
+
+            var user = _context.Users.Find(id);
+
+
+
+            if (user != null)
+            {
+                if (userView.ChangePassword.NewPassword != null && user.Password != userView.ChangePassword.NewPassword)
+                {
+
+                    var viewm = new UserView
+                    {
+                        ChangePassword = new ChangePassword
+                        {
+                            Id = id
+                        }
+                    };
+
+                    ViewBag.errorPass = "Your Password Did not match!";
+                    return View(viewm);
+                }
+
+                user.Password = userView.ChangePassword.NewPassword;
+                _context.Entry(user).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+            else
+            {
+                return RedirectToAction("SignIn");
+            }
+
+            return View();
+        }
+
+
+        public ActionResult SaveProfileImage(UserImage ui)
+        {
+
+            if (Session["Id"] == null)
+            {
+                return RedirectToAction("SignIn");
+            }
+            var userId = (int)Session["Id"];
+
+            var album = _context.Albums.SingleOrDefault(c => c.Name == "Profile");
+
+
+            if (album == null)
+            {
+                var newProfileAlbum = new Album
+                {
+                    Name = "Profile",
+                    UserId = userId
+                };
+
+                _context.Albums.Add(newProfileAlbum);
+                _context.SaveChanges();
+            }
+
+            var albumCreated = _context.Albums.Single(c => c.Name == "Profile");
+
+            string fileName = Path.GetFileNameWithoutExtension(ui.ImageFile.FileName);
+            string extension = Path.GetExtension(ui.ImageFile.FileName);
+            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            ui.ImageUrl = "~/Assets/Images/" + fileName;
+            fileName = Path.Combine(Server.MapPath("~/Assets/Images/"), fileName);
+            ui.ImageFile.SaveAs(fileName);
+
+            ui.AlbumId = albumCreated.Id;
+            ui.UserId = userId;
+            ui.IsCoverPic = false;
+            ui.IsProfilePic = true;
+            ui.Title = "Profile-Pic";
+
+            _context.UserImages.Add(ui);
+            _context.SaveChanges();
+
+
+            return View("Change");
+        }
+
+        //------------------------------------------------Save Profile Image Done!!---------------------------------------
+
+
+        public ActionResult SaveCoverImage(UserImage ui)
+        {
+
+            if (Session["Id"] == null)
+            {
+                return RedirectToAction("SignIn");
+            }
+            var userId = (int)Session["Id"];
+            var album = _context.Albums.SingleOrDefault(c => c.Name == "Cover");
+            if (album == null)
+            {
+                var newCoverAlbum = new Album
+                {
+                    Name = "Cover",
+                    UserId = userId
+                };
+
+                _context.Albums.Add(newCoverAlbum);
+                _context.SaveChanges();
+            }
+
+            var albumCreated = _context.Albums.Single(c => c.Name == "Cover");
+
+            string fileName = Path.GetFileNameWithoutExtension(ui.ImageFile.FileName);
+            string extension = Path.GetExtension(ui.ImageFile.FileName);
+            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            ui.ImageUrl = "/Assets/Images/" + fileName;
+            fileName = Path.Combine(Server.MapPath("/Assets/Images/"), fileName);
+            ui.ImageFile.SaveAs(fileName);
+
+            ui.AlbumId = albumCreated.Id;
+            ui.UserId = userId;
+            ui.IsCoverPic = true;
+            ui.IsProfilePic = false;
+            ui.Title = "Cover-Pic";
+            _context.UserImages.Add(ui);
+            _context.SaveChanges();
+
+
+            return View("Change");
+        }
+
+        //------------------------------------------------Save Cover Done!!---------------------------------------
+
+
+        public bool SignInFn(LoginViewModel signinVm)
+        {
+
 
             if (ModelState.IsValid)
             {
-                var emailPass = _context.Users.FirstOrDefault(u => u.Email == signinVm.Email && u.Password.Contains(signinVm.Password));
+                var emailPass = _context.Users.FirstOrDefault(u => u.Email == signinVm.Email && u.Password == signinVm.Password);
 
                 //var idpass = context.Users
                 //    .Where(u => u.Id == signinVM.Id && u.Password.Contains(signinVM.Password)).FirstOrDefault();
 
-                var idPass = _context.Users.FirstOrDefault(u => u.Id == signinVm.Id && u.Password.Contains(signinVm.Password));
-
-                if (emailPass != null || idPass != null)
+                if (emailPass == null)
                 {
-                    Session["Id"] = signinVm.Id;
-                    Session["Email"] = signinVm.Email;
+                    return false;
                 }
+
+                var user = _context.Users.FirstOrDefault(u => u.Email == signinVm.Email);
+
+                var id = emailPass.Id;
+
+                Session["Id"] = id;
+                Session["Email"] = emailPass.Email;
+
+                //var idPass = _context.Users.FirstOrDefault(u => u.Id == signinVm.Id && u.Password.Contains(signinVm.Password));
+
+                //if (emailPass != null || idPass != null)
+                //{
+                //    Session["Id"] = signinVm.Id;
+                //    Session["Email"] = signinVm.Email;
+
+
+                //}
             }
+
+            return true;
         }
+        //------------------------------------------------Sign In Function Done!!---------------------------------------
 
         public ActionResult SignOut()
         {
@@ -293,7 +698,7 @@ namespace ProHallManagement.Controllers
             Session.RemoveAll();
             return RedirectToAction("SignIn");
         }
-
+        //------------------------------------------------Sign-Out Action Function Done!!---------------------------------------
 
 
     }

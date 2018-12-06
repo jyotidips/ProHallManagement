@@ -1,40 +1,321 @@
 ﻿@model ProHallManagement.ViewModel.TotalViewModel
 
 @{
-    /**/
-
     ViewBag.Title = "Account";
-    Layout = "~/Views/Shared/_home.cshtml";
-}
-
-<h2>Account</h2>
-@if (Model.Students != null)
-{
-    <h1>Student Id</h1>
-    <h2>@Model.Students.Name</h2>
-    <h2>@Model.Students.Email </h2>
-    <h2>@Model.Students.Phone</h2>
-}
-@if (Model.Teachers != null)
-{
-
-
-
-    <h1>Teachers Id</h1>
-    <h2>@Model.Teachers.Name</h2>
-    <h2>@Model.Teachers.Phone </h2>
-    <h2>@Model.Teachers.Address</h2>
-}
-
-@if (Model.Employees != null)
-{
-    <h1>Employee Id</h1>
-    <h2>@Model.Employees.Name</h2>
-    <h2>@Model.Employees.Phone </h2>
-    <h2>@Model.Employees.Address</h2>
+    Layout = "~/Views/Shared/_account.cshtml";
 }
 
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+
+
+
+<main>
+    <div id="page-wrapper">
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">Dashboard</h1>
+                <ol class="breadcrumb">
+                    <li class="active">
+                        <a href="">Home</a> <i class="zmdi zmdi-circle"></i> Dashboard
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="row">
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-block">
+                    <div class="card-text">
+                        <ul class="list-inline text-center">
+                            <li>
+                                <h5>Your Profile</h5>
+                            </li>
+
+                        </ul>
+                        <div class="panel-body">
+
+
+                            @if (Model.Students != null)
+                            {
+                                <h1>Student Id</h1>
+                                <div class="list-group">
+
+                                    <a href="" class="list-group-item">
+                                        <i class="zmdi zmdi-comment-more"></i> <h4>@Model.Students.Name</h4>
+
+                                    </a>
+                                    <a href="" class="list-group-item">
+                                        <i class="zmdi zmdi-twitter"></i> <h4>@Model.Students.Email </h4>
+
+                                    </a>
+                                    <a href="" class="list-group-item">
+                                        <i class="zmdi zmdi-email"></i><h4>@Model.Students.Phone</h4>
+                                    </a>
+                                </div>
+                            }
+
+                            else if (Model.Teachers != null)
+                            {
+                                <h1>Student Id</h1>
+                                <div class="list-group">
+
+                                    <a href="" class="list-group-item">
+                                        <i class="zmdi zmdi-comment-more"></i> <h4>@Model.Teachers.Name</h4>
+
+                                    </a>
+                                    <a href="" class="list-group-item">
+                                        <i class="zmdi zmdi-twitter"></i> <h4>@Model.Teachers.Email </h4>
+
+                                    </a>
+                                    <a href="" class="list-group-item">
+                                        <i class="zmdi zmdi-email"></i><h4>@Model.Teachers.Phone</h4>
+                                    </a>
+                                </div>
+                            }
+
+                            else if (Model.Employees != null)
+                            {
+                                <h1>Student Id</h1>
+                                <div class="list-group">
+
+                                    <a href="" class="list-group-item">
+                                        <i class="zmdi zmdi-comment-more"></i> <h4>@Model.Employees.Name</h4>
+
+                                    </a>
+
+                                    <a href="" class="list-group-item">
+                                        <i class="zmdi zmdi-email"></i><h4>@Model.Employees.Phone</h4>
+                                    </a>
+                                </div>
+                            }
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card card-block" style="height: 420px">
+                    <div class="card-text">
+                        <ul class="list-inline text-center">
+                            <li>
+                                <h5>
+                                    <i class="zmdi zmdi-circle" style="color: #fbc5c5;"></i> Server Process
+                                    Data
+                                </h5>
+                            </li>
+                        </ul>
+                        <div id="live-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="zmdi zmdi-notifications-active"></i> Notifications Panel
+                    </div>
+                    <div class="panel-body">
+                        <div class="list-group">
+                            <a href="" class="list-group-item">
+                                <i class="zmdi zmdi-comment-more"></i> New Comment
+                                <span class="pull-right text-muted small">
+                                    <em>4 minutes ago</em>
+                                </span>
+                            </a>
+                            <a href="" class="list-group-item">
+                                <i class="zmdi zmdi-twitter"></i> 3 New Followers
+                                <span class="pull-right text-muted small">
+                                    <em>12 minutes ago</em>
+                                </span>
+                            </a>
+                            <a href="" class="list-group-item">
+                                <i class="zmdi zmdi-email"></i> Message Sent
+                                <span class="pull-right text-muted small">
+                                    <em>27 minutes ago</em>
+                                </span>
+                            </a>
+                            <a href="" class="list-group-item">
+                                <i class="zmdi zmdi-storage"></i> New Task
+                                <span class="pull-right text-muted small">
+                                    <em>43 minutes ago</em>
+                                </span>
+                            </a>
+                            <a href="" class="list-group-item">
+                                <i class="zmdi zmdi-upload"></i> Server Rebooted
+                                <span class="pull-right text-muted small">
+                                    <em>11:32 AM</em>
+                                </span>
+                            </a>
+                            <a href="" class="list-group-item">
+                                <i class="zmdi zmdi-flash"></i> Server Crashed!
+                                <span class="pull-right text-muted small">
+                                    <em>11:13 AM</em>
+                                </span>
+                            </a>
+                            <a href="" class="list-group-item">
+                                <i class="zmdi zmdi-alert-polygon"></i> Server Not Responding
+                                <span class="pull-right text-muted small">
+                                    <em>10:57 AM</em>
+                                </span>
+                            </a>
+                            <a href="" class="list-group-item">
+                                <i class="zmdi zmdi-shopping-cart"></i> New Order Placed
+                                <span class="pull-right text-muted small">
+                                    <em>9:49 AM</em>
+                                </span>
+                            </a>
+                            <a href="" class="list-group-item">
+                                <i class="zmdi zmdi-money-box"></i> Payment Received
+                                <span class="pull-right text-muted small">
+                                    <em>Yesterday</em>
+                                </span>
+                            </a>
+                        </div>
+                        <a href="" class="btn btn-success btn-block">View All Alerts</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="chat-panel panel panel-default">
+                    <div class="panel-heading">
+                        <i class="zmdi zmdi-comments"></i>
+                        Chat
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
+                                <i class="zmdi zmdi-time-interval"></i>
+                            </button>
+                            <ul class="dropdown-menu animated fadeIn">
+                                <li>
+                                    <a href="">
+                                        <i class="zmdi zmdi-refresh"></i> Refresh
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <i class="zmdi zmdi-alarm-check"></i> Available
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <i class="zmdi zmdi-timer-off"></i> Busy
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <i class="zmdi zmdi-timer"></i> Away
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="">
+                                        <i class="zmdi zmdi-square-right"></i> Sign Out
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="chat">
+                            <li class="left clearfix">
+                                <span class="chat-img pull-left">
+                                    <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
+                                </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <strong class="primary-font">Jack Sparrow</strong>
+                                        <small class="pull-right text-muted">
+                                            <i class="zmdi zmdi-time-countdown"></i> 12 mins ago
+                                        </small>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+                                        bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="right clearfix">
+                                <span class="chat-img pull-right">
+                                    <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />
+                                </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <small class=" text-muted">
+                                            <i class="zmdi zmdi-time-countdown"></i> 13 mins ago
+                                        </small>
+                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+                                        bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="left clearfix">
+                                <span class="chat-img pull-left">
+                                    <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
+                                </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <strong class="primary-font">Jack Sparrow</strong>
+                                        <small class="pull-right text-muted">
+                                            <i class="zmdi zmdi-time-countdown"></i> 14 mins ago
+                                        </small>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+                                        bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="right clearfix">
+                                <span class="chat-img pull-right">
+                                    <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />
+                                </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <small class=" text-muted">
+                                            <i class="zmdi zmdi-time-countdown"></i> 15 mins ago
+                                        </small>
+                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+                                        bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="input-group">
+                            <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                            <span class="input-group-btn">
+                                <button class="btn btn-warning btn-sm" id="btn-chat">
+                                    Send
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</main>
+
+

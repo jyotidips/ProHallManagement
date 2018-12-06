@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -18,8 +19,14 @@ namespace ProHallManagement.Models
         public int AlbumId { get; set; }
         public Album Album { get; set; }
 
+
         public bool IsProfilePic { get; set; }
+        public bool IsCoverPic { get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase ImageFile { get; set; }
     }
+
 
 
 
