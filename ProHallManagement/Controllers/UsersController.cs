@@ -296,11 +296,15 @@ namespace ProHallManagement.Controllers
                 return RedirectToAction("SignIn");
             }
 
+
             var id = (int)Session["Id"];
 
             var userdata = _context.Users.Find(id);
 
-
+            if (userdata.UserCategoryId == 3)
+            {
+                ViewBag.emp = true;
+            }
 
 
             var viewmodel = new UserView
@@ -346,7 +350,7 @@ namespace ProHallManagement.Controllers
 
                 userData.Name = uv.User.Name;
                 userData.Email = uv.User.Email;
-                userData.Password = uv.User.Password;
+                //userData.Password = uv.User.Password;
 
 
                 stdData.Name = uv.User.Name;
@@ -366,9 +370,11 @@ namespace ProHallManagement.Controllers
                     return View("UserProfile", uv);
                 }
 
+
+
                 userData.Name = uv.User.Name;
                 userData.Email = uv.User.Email;
-                userData.Password = uv.User.Password;
+                //userData.Password = uv.User.Password;
 
 
                 teachData.Name = uv.User.Name;
@@ -390,7 +396,7 @@ namespace ProHallManagement.Controllers
 
                 userData.Name = uv.User.Name;
                 userData.Email = uv.User.Email;
-                userData.Password = uv.User.Password;
+                //userData.Password = uv.User.Password;
 
 
                 empData.Name = uv.User.Name;
@@ -414,52 +420,6 @@ namespace ProHallManagement.Controllers
 
 
 
-        //Change Image
-        public ActionResult Change()
-        {
-
-            if (Session["Id"] == null)
-            {
-                return RedirectToAction("SignIn");
-            }
-
-            var userId = (int)Session["Id"];
-
-            if (Session["successRPP"] != null)
-            {
-                var successMsgPro = Session["successRPP"];
-                ViewBag.successpro = successMsgPro;
-            }
-
-            if (Session["successRCP"] != null)
-            {
-                var successMsgCover = Session["successRCP"];
-                ViewBag.successcover = successMsgCover;
-            }
-
-
-            var profileImgUrl = _context.UserImages.Where(i => i.IsProfilePic == true && i.UserId == userId).FirstOrDefault();
-            var coverImgUrl = _context.UserImages.Where(i => i.IsCoverPic == true && i.UserId == userId).FirstOrDefault();
-
-
-            if (profileImgUrl != null)
-            {
-                ViewBag.proImageId = profileImgUrl.Id;
-                ViewBag.profileImgUrl = profileImgUrl.ImageUrl;
-            }
-
-            if (coverImgUrl != null)
-            {
-                ViewBag.coverImageId = coverImgUrl.Id;
-                ViewBag.coverImgUrl = coverImgUrl.ImageUrl;
-            }
-
-
-            Session["successRPP"] = null;
-            Session["successRCP"] = null;
-
-            return View();
-        }
 
 
         public ActionResult RemovePro(int id)
@@ -560,6 +520,69 @@ namespace ProHallManagement.Controllers
         }
 
 
+        //Change Image
+        public ActionResult Change()
+        {
+
+            if (Session["Id"] == null)
+            {
+                return RedirectToAction("SignIn");
+            }
+
+            if (Session["imageAlreadyProfile"] != null)
+            {
+                ViewBag.imageAlreadyProfile = Session["imageAlreadyProfile"];
+            }
+
+            if (Session["imageAlreadyCover"] != null)
+            {
+                ViewBag.imageAlreadyCover = Session["imageAlreadyCover"];
+            }
+
+
+            var userId = (int)Session["Id"];
+
+            if (Session["successRPP"] != null)
+            {
+                var successMsgPro = Session["successRPP"];
+                ViewBag.successpro = successMsgPro;
+            }
+
+            if (Session["successRCP"] != null)
+            {
+                var successMsgCover = Session["successRCP"];
+                ViewBag.successcover = successMsgCover;
+            }
+
+
+
+            var profileImgUrl = _context.UserImages.Where(i => i.IsProfilePic == true && i.UserId == userId).FirstOrDefault();
+            var coverImgUrl = _context.UserImages.Where(i => i.IsCoverPic == true && i.UserId == userId).FirstOrDefault();
+
+
+            if (profileImgUrl != null)
+            {
+                ViewBag.proImageId = profileImgUrl.Id;
+                ViewBag.profileImgUrl = profileImgUrl.ImageUrl;
+            }
+
+            if (coverImgUrl != null)
+            {
+                ViewBag.coverImageId = coverImgUrl.Id;
+                ViewBag.coverImgUrl = coverImgUrl.ImageUrl;
+            }
+
+
+            Session["successRPP"] = null;
+            Session["successRCP"] = null;
+            Session["imageAlreadyProfile"] = null;
+
+            return View();
+        }
+
+
+
+
         public ActionResult SaveProfileImage(UserImage ui)
         {
 
@@ -568,42 +591,52 @@ namespace ProHallManagement.Controllers
                 return RedirectToAction("SignIn");
             }
             var userId = (int)Session["Id"];
+            var user = _context.Users.Find(userId);
 
-            var album = _context.Albums.SingleOrDefault(c => c.Name == "Profile");
+            //If any profile pic already exists
+            var anyImageIsProfileAlready = _context.UserImages.Where(i => i.IsProfilePic == true && i.UserId == userId).ToList();
+            if (anyImageIsProfileAlready.Count > 0)
+            {
+                Session["imageAlreadyProfile"] = "A Profile Picture Exists Already. Remove It First!";
+                return RedirectToAction("Change");
+            }
 
-
-            if (album == null)
+            //if not then,
+            //if any album exists for the current user
+            var album = _context.Albums.SingleOrDefault(a => a.UserId == userId && a.Name.Contains("Profile"));
+            if (album == null)//if no album exists for current user
             {
                 var newProfileAlbum = new Album
                 {
-                    Name = "Profile",
+                    Name = "Profile-of-" + user.Name.Replace(" ", "-"),
                     UserId = userId
                 };
-
                 _context.Albums.Add(newProfileAlbum);
                 _context.SaveChanges();
-            }
+            }//new album is created
 
-            var albumCreated = _context.Albums.Single(c => c.Name == "Profile");
+
+            var albumFound = _context.Albums.SingleOrDefault(a => a.UserId == userId && a.Name.Contains("Profile"));
+
 
             string fileName = Path.GetFileNameWithoutExtension(ui.ImageFile.FileName);
             string extension = Path.GetExtension(ui.ImageFile.FileName);
-            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-            ui.ImageUrl = "~/Assets/Images/" + fileName;
-            fileName = Path.Combine(Server.MapPath("~/Assets/Images/"), fileName);
+            fileName = fileName + DateTime.Now.ToString("dd-MMMM-yyyy-hh.mm-tt") + extension;
+            ui.ImageUrl = "/Assets/Images/" + fileName.Replace(" ", "-");
+            fileName = Path.Combine(Server.MapPath("/Assets/Images/"), fileName.Replace(" ", "-"));
             ui.ImageFile.SaveAs(fileName);
 
-            ui.AlbumId = albumCreated.Id;
+            ui.AlbumId = albumFound.Id;
             ui.UserId = userId;
             ui.IsCoverPic = false;
             ui.IsProfilePic = true;
-            ui.Title = "Profile-Pic";
+            ui.Title = "Profile-Pic-of-" + user.Name.Replace(" ", "-");
 
             _context.UserImages.Add(ui);
             _context.SaveChanges();
 
 
-            return View("Change");
+            return RedirectToAction("Change");
         }
 
         //------------------------------------------------Save Profile Image Done!!---------------------------------------
@@ -616,39 +649,55 @@ namespace ProHallManagement.Controllers
             {
                 return RedirectToAction("SignIn");
             }
+
             var userId = (int)Session["Id"];
-            var album = _context.Albums.SingleOrDefault(c => c.Name == "Cover");
-            if (album == null)
+            var user = _context.Users.Find(userId);
+
+            //If any cover pic already exists
+
+            var anyImageIsCoverAlready = _context.UserImages.Where(i => i.IsCoverPic == true && i.UserId == userId).ToList();
+            if (anyImageIsCoverAlready.Count > 0)
+            {
+                Session["imageAlreadyCover"] = "A Cover Picture Exists Already. Remove It First!";
+
+                return RedirectToAction("Change");
+            }
+
+            //if not then,
+            //if any cover album exists for the current user
+            var album = _context.Albums.SingleOrDefault(a => a.UserId == userId && a.Name.Contains("Cover"));
+            if (album == null)//if no album exists for current user
             {
                 var newCoverAlbum = new Album
                 {
-                    Name = "Cover",
+                    Name = "Cover-of-" + user.Name.Replace(" ", "-"),
                     UserId = userId
                 };
-
                 _context.Albums.Add(newCoverAlbum);
                 _context.SaveChanges();
-            }
+            }//new album is created
 
-            var albumCreated = _context.Albums.Single(c => c.Name == "Cover");
+            // at last album found !
+            var albumFound = _context.Albums.SingleOrDefault(a => a.UserId == userId && a.Name.Contains("Cover"));
 
+            //so........
             string fileName = Path.GetFileNameWithoutExtension(ui.ImageFile.FileName);
             string extension = Path.GetExtension(ui.ImageFile.FileName);
-            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-            ui.ImageUrl = "/Assets/Images/" + fileName;
-            fileName = Path.Combine(Server.MapPath("/Assets/Images/"), fileName);
+            fileName = fileName + DateTime.Now.ToString("dd-MMMM-yyyy-hh.mm-tt") + extension;
+            ui.ImageUrl = "/Assets/Images/" + fileName.Replace(" ", "-");
+            fileName = Path.Combine(Server.MapPath("/Assets/Images/"), fileName.Replace(" ", "-"));
             ui.ImageFile.SaveAs(fileName);
 
-            ui.AlbumId = albumCreated.Id;
+            ui.AlbumId = albumFound.Id;
             ui.UserId = userId;
             ui.IsCoverPic = true;
             ui.IsProfilePic = false;
-            ui.Title = "Cover-Pic";
+            ui.Title = "Cover-Pic-of-" + user.Name.Replace(" ", "-");
             _context.UserImages.Add(ui);
             _context.SaveChanges();
 
 
-            return View("Change");
+            return RedirectToAction("Change");
         }
 
         //------------------------------------------------Save Cover Done!!---------------------------------------

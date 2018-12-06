@@ -38,6 +38,13 @@
                                         @ViewBag.successpro
                                     </li>
                                 }
+                                else if (ViewBag.imageAlreadyProfile != null)
+                                {
+                                    <li class="list-group-item" style="color: crimson">
+                                        @ViewBag.imageAlreadyProfile
+                                    </li>
+                                }
+
 
                                 @{
                                     if (ViewBag.profileImgUrl != null)
