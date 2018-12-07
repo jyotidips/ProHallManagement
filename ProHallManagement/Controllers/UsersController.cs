@@ -608,7 +608,7 @@ namespace ProHallManagement.Controllers
             {
                 var newProfileAlbum = new Album
                 {
-                    Name = "Profile-of-" + user.Name.Replace(" ", "-"),
+                    Name = "Profile",
                     UserId = userId
                 };
                 _context.Albums.Add(newProfileAlbum);
@@ -670,7 +670,7 @@ namespace ProHallManagement.Controllers
             {
                 var newCoverAlbum = new Album
                 {
-                    Name = "Cover-of-" + user.Name.Replace(" ", "-"),
+                    Name = "Cover",
                     UserId = userId
                 };
                 _context.Albums.Add(newCoverAlbum);
