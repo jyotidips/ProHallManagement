@@ -29,16 +29,15 @@ namespace ProHallManagement.Models
         public DateTime CreatedAt { get; set; }
 
         public int UserCategoryId { get; set; }
+        [ForeignKey("UserCategoryId")]
+        public virtual UserCategory UserCategory { get; set; }
 
-        public UserCategory UserCategory { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
-        public ICollection<UserImage> UserImages { get; set; }
-
-        public ICollection<UserRole> UserRoles { get; set; }
-
-        public ICollection<Album> Albums { get; set; }
-        public ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Notification> Notifications { get; set; }
+        public virtual ICollection<UComment> UComments { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<UAlbum> UAlbums { get; set; }
+        public virtual ICollection<UPost> UPosts { get; set; }
 
     }
 }

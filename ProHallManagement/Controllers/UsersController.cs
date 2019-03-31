@@ -91,9 +91,7 @@ namespace ProHallManagement.Controllers
                     FacultyId = user.Student.FacultyId,
                     Session = user.Student.Session,
                     SessionId = user.Student.SessionId,
-                    Phone = user.Student.Phone,
-                    Post = user.Student.Post,
-                    PostId = user.Student.PostId
+                    Phone = user.Student.Phone
                 };
 
                 _context.Students.Add(newstudent);
@@ -104,7 +102,7 @@ namespace ProHallManagement.Controllers
 
                 ViewBag.success = "You are Registered succesfully";
 
-                return View(viewmodel);
+                return View();
             }
             else if (id == 2)
             {
@@ -147,13 +145,10 @@ namespace ProHallManagement.Controllers
 
                 _context.Teachers.Add(newteacher);
                 _context.Users.Add(newuser);
-
-
-
                 _context.SaveChanges();
 
                 ViewBag.success = "You are Registered succesfully";
-                return View(viewmodel);
+                return View();
             }
             else if (id == 3)
             {
@@ -189,7 +184,7 @@ namespace ProHallManagement.Controllers
                 _context.SaveChanges();
 
                 ViewBag.success = "You are Registered succesfully";
-                return View(viewmodel);
+                return View();
             }
 
             return View(viewmodel);
@@ -429,7 +424,7 @@ namespace ProHallManagement.Controllers
                 return RedirectToAction("SignIn");
             }
 
-            var image = _context.UserImages.Where(i => i.Id == id).First();
+            var image = _context.UImages.Where(i => i.Id == id).First();
             image.IsProfilePic = false;
 
             _context.Entry(image).State = EntityState.Modified;
@@ -444,7 +439,7 @@ namespace ProHallManagement.Controllers
             {
                 return RedirectToAction("SignIn");
             }
-            var image = _context.UserImages.Where(i => i.Id == id).First();
+            var image = _context.UImages.Where(i => i.Id == id).First();
 
             image.IsCoverPic = false;
 
@@ -454,6 +449,8 @@ namespace ProHallManagement.Controllers
 
             return RedirectToAction("Change");
         }
+
+
         public ActionResult ChangePassword()
         {
             if (Session["Id"] == null)
@@ -556,20 +553,21 @@ namespace ProHallManagement.Controllers
 
 
 
-            var profileImgUrl = _context.UserImages.Where(i => i.IsProfilePic == true && i.UserId == userId).FirstOrDefault();
-            var coverImgUrl = _context.UserImages.Where(i => i.IsCoverPic == true && i.UserId == userId).FirstOrDefault();
+            var profileImgUrl = _context.UImages.Include(i => i.UAlbum).Where(i => i.IsProfilePic == true && i.UAlbum.UserId == userId);
+            var coverImgUrl = _context.UImages.Include(i => i.UAlbum).Where(i => i.IsCoverPic == true && i.UAlbum.UserId == userId);
 
+            //changed with eagerloading
 
             if (profileImgUrl != null)
             {
-                ViewBag.proImageId = profileImgUrl.Id;
-                ViewBag.profileImgUrl = profileImgUrl.ImageUrl;
+                ViewBag.proImageId = profileImgUrl.Select(c => c.Id).FirstOrDefault();
+                ViewBag.profileImgUrl = profileImgUrl.Select(c => c.ImageUrl).FirstOrDefault();
             }
 
             if (coverImgUrl != null)
             {
-                ViewBag.coverImageId = coverImgUrl.Id;
-                ViewBag.coverImgUrl = coverImgUrl.ImageUrl;
+                ViewBag.coverImageId = coverImgUrl.Select(c => c.Id).FirstOrDefault(); ;
+                ViewBag.coverImgUrl = coverImgUrl.Select(c => c.ImageUrl).FirstOrDefault();
             }
 
 
@@ -583,7 +581,7 @@ namespace ProHallManagement.Controllers
 
 
 
-        public ActionResult SaveProfileImage(UserImage ui)
+        public ActionResult SaveProfileImage(UImage ui)
         {
 
             if (Session["Id"] == null)
@@ -594,29 +592,46 @@ namespace ProHallManagement.Controllers
             var user = _context.Users.Find(userId);
 
             //If any profile pic already exists
-            var anyImageIsProfileAlready = _context.UserImages.Where(i => i.IsProfilePic == true && i.UserId == userId).ToList();
-            if (anyImageIsProfileAlready.Count > 0)
+
+
+            try
             {
-                Session["imageAlreadyProfile"] = "A Profile Picture Exists Already. Remove It First!";
-                return RedirectToAction("Change");
+                var anyImageIsProfileAlready = _context.UImages.Include(i => i.UAlbum).Where(i => i.IsProfilePic == true && i.UAlbum.UserId == userId).ToList();
+                if (anyImageIsProfileAlready.Count > 0)
+                {
+                    Session["imageAlreadyProfile"] = "A Profile Picture Exists Already. Remove It First!";
+                    return RedirectToAction("Change");
+                }
+
+
+                //Some commands that can raise an exception
+            }
+            catch (Exception e)
+            {
+                Exception inner = e.InnerException ?? e;
+                while (inner.InnerException != null)
+                {
+                    inner = inner.InnerException;
+                }
+
             }
 
             //if not then,
             //if any album exists for the current user
-            var album = _context.Albums.SingleOrDefault(a => a.UserId == userId && a.Name.Contains("Profile"));
+            var album = _context.UAlbums.SingleOrDefault(a => a.UserId == userId && a.Name.Contains("Profile"));
             if (album == null)//if no album exists for current user
             {
-                var newProfileAlbum = new Album
+                var newProfileAlbum = new UAlbum
                 {
                     Name = "Profile",
                     UserId = userId
                 };
-                _context.Albums.Add(newProfileAlbum);
+                _context.UAlbums.Add(newProfileAlbum);
                 _context.SaveChanges();
             }//new album is created
 
 
-            var albumFound = _context.Albums.SingleOrDefault(a => a.UserId == userId && a.Name.Contains("Profile"));
+            var albumFound = _context.UAlbums.SingleOrDefault(a => a.UserId == userId && a.Name.Contains("Profile"));
 
 
             string fileName = Path.GetFileNameWithoutExtension(ui.ImageFile.FileName);
@@ -626,13 +641,14 @@ namespace ProHallManagement.Controllers
             fileName = Path.Combine(Server.MapPath("/Assets/Images/"), fileName.Replace(" ", "-"));
             ui.ImageFile.SaveAs(fileName);
 
+            ui.Title = "Profile-Pic-of-" + user.Name.Replace(" ", "-");
             ui.AlbumId = albumFound.Id;
-            ui.UserId = userId;
+            //            ui.UAlbum.UserId = userId;    // something to think here
             ui.IsCoverPic = false;
             ui.IsProfilePic = true;
-            ui.Title = "Profile-Pic-of-" + user.Name.Replace(" ", "-");
 
-            _context.UserImages.Add(ui);
+
+            _context.UImages.Add(ui);
             _context.SaveChanges();
 
 
@@ -642,7 +658,7 @@ namespace ProHallManagement.Controllers
         //------------------------------------------------Save Profile Image Done!!---------------------------------------
 
 
-        public ActionResult SaveCoverImage(UserImage ui)
+        public ActionResult SaveCoverImage(UImage ui)
         {
 
             if (Session["Id"] == null)
@@ -655,8 +671,10 @@ namespace ProHallManagement.Controllers
 
             //If any cover pic already exists
 
-            var anyImageIsCoverAlready = _context.UserImages.Where(i => i.IsCoverPic == true && i.UserId == userId).ToList();
-            if (anyImageIsCoverAlready.Count > 0)
+            var anyImageIsCoverAlready = _context.UImages.Include(i => i.UAlbum).Where(i => i.IsCoverPic == true && i.UAlbum.UserId == userId);
+
+            var cover = anyImageIsCoverAlready.Select(c => c.Id).ToList();
+            if (cover.Count > 0)
             {
                 Session["imageAlreadyCover"] = "A Cover Picture Exists Already. Remove It First!";
 
@@ -665,20 +683,20 @@ namespace ProHallManagement.Controllers
 
             //if not then,
             //if any cover album exists for the current user
-            var album = _context.Albums.SingleOrDefault(a => a.UserId == userId && a.Name.Contains("Cover"));
+            var album = _context.UAlbums.SingleOrDefault(a => a.UserId == userId && a.Name.Contains("Cover"));
             if (album == null)//if no album exists for current user
             {
-                var newCoverAlbum = new Album
+                var newCoverAlbum = new UAlbum
                 {
                     Name = "Cover",
                     UserId = userId
                 };
-                _context.Albums.Add(newCoverAlbum);
+                _context.UAlbums.Add(newCoverAlbum);
                 _context.SaveChanges();
             }//new album is created
 
             // at last album found !
-            var albumFound = _context.Albums.SingleOrDefault(a => a.UserId == userId && a.Name.Contains("Cover"));
+            var albumFound = _context.UAlbums.SingleOrDefault(a => a.UserId == userId && a.Name.Contains("Cover"));
 
             //so........
             string fileName = Path.GetFileNameWithoutExtension(ui.ImageFile.FileName);
@@ -689,13 +707,12 @@ namespace ProHallManagement.Controllers
             ui.ImageFile.SaveAs(fileName);
 
             ui.AlbumId = albumFound.Id;
-            ui.UserId = userId;
+            //            ui.UserId = userId;
             ui.IsCoverPic = true;
             ui.IsProfilePic = false;
             ui.Title = "Cover-Pic-of-" + user.Name.Replace(" ", "-");
-            _context.UserImages.Add(ui);
+            _context.UImages.Add(ui);
             _context.SaveChanges();
-
 
             return RedirectToAction("Change");
         }
@@ -740,6 +757,15 @@ namespace ProHallManagement.Controllers
             return true;
         }
         //------------------------------------------------Sign In Function Done!!---------------------------------------
+
+
+        public PartialViewResult CreatePost()
+        {
+            return PartialView("_CreatePost");
+        }
+
+
+
 
         public ActionResult SignOut()
         {

@@ -18,8 +18,26 @@ namespace ProHallManagement.ViewModel
         public Work Works { get; set; }
 
 
-        public Notification Notifications { get; set; }
-        public List<Post> Posts { get; set; }
+        public Notification Notification { get; set; }
+
+
+        public IEnumerable<UPost> Posts { get; set; }
+        public UPost Post { get; set; }
+
+
+        public PImage PImage { get; set; }
+        public IEnumerable<PImage> PImages { get; set; }
+
+
+        public UComment UComment { get; set; }
+        public IEnumerable<UComment> UComments { get; set; }
+
+
+
+
+
+        public HttpPostedFileBase File { get; set; }
+
 
 
     }

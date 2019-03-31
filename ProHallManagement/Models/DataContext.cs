@@ -8,6 +8,13 @@ namespace ProHallManagement.Models
 {
     public class DataContext : DbContext
     {
+
+
+
+        public DataContext() : base("DbConnect")
+        {
+        }
+
         public DbSet<Teacher> Teachers { get; set; }
 
 
@@ -20,17 +27,18 @@ namespace ProHallManagement.Models
         public DbSet<Work> Works { get; set; }
 
         public DbSet<Notification> Notificatons { get; set; }
-        public DbSet<Post> Posts { get; set; }
+        public DbSet<UPost> UPosts { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserCategory> UserCategories { get; set; }
-        public DbSet<Comment> Comments { get; set; }
-        public DbSet<PostImage> PostImages { get; set; }
+        public DbSet<UComment> UComments { get; set; }
+        public DbSet<PImage> PImages { get; set; }
+
 
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
 
-        public DbSet<UserImage> UserImages { get; set; }
-        public DbSet<Album> Albums { get; set; }
+        public DbSet<UImage> UImages { get; set; }
+        public DbSet<UAlbum> UAlbums { get; set; }
 
 
     }

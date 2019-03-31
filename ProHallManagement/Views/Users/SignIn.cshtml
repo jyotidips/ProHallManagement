@@ -1,12 +1,8 @@
 ﻿@model ProHallManagement.ViewModel.LoginViewModel
 
 @{
-                /**/
-
-                /**/
-
-                ViewBag.Title = "SignIn";
-                Layout = "~/Views/Shared/_login.cshtml";
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_login.cshtml";
 }
 
 <h2>SignIn</h2>
@@ -46,9 +42,6 @@
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
-
-
-
 
 
         <div class="form-group">

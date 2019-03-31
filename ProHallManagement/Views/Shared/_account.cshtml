@@ -306,7 +306,8 @@
                                         <a href="/Users/changepassword"><i class="zmdi zmdi-pin-assistant"></i>Change Password</a>
                                     </li>
                                     <li>
-                                        <a href="Users/Logout"><i class="zmdi zmdi-sign-in"></i> Logout</a>
+                                        @Html.ActionLink("Logout", "Logout", "Users", new { @class = "zmdi zmdi-sign-in" })
+
                                     </li>
                                 </ul>
                             </li>
@@ -316,29 +317,29 @@
                             <li class="active">
                                 <a href="index-2.html"><i class="zmdi zmdi-view-dashboard"></i> Dashboard</a>
                             </li>
-                            <li>
-                                <a href="">
-                                    <i class="zmdi zmdi-collection-text"></i> Account <span class="zmdi zmdi-plus"></span>
-                                </a>
-                                <ul class="nav nav-second-level">
+                            @*<li>
+                                    <a href="">
+                                        <i class="zmdi zmdi-collection-text"></i> Account <span class="zmdi zmdi-plus"></span>
+                                    </a>
+                                    <ul class="nav nav-second-level">
 
-                                    <li>
-                                        <a href="pages/change_password.html">Change Password</a>
-                                    </li>
-                                    <li>
-                                        <a href="pages/forgot_password.html">Forgot Password</a>
-                                    </li>
-                                    <li>
-                                        <a href="pages/confirm_email.html">Confirm Email</a>
-                                    </li>
-                                    <li>
-                                        <a href="pages/lockscreen.html">Lock Screen</a>
-                                    </li>
-                                    <li>
-                                        <a href="pages/maintenance.html">Maintenance</a>
-                                    </li>
-                                </ul>
-                            </li>
+                                        <li>
+                                            <a href="pages/change_password.html">Change Password</a>
+                                        </li>
+                                        <li>
+                                            <a href="pages/forgot_password.html">Forgot Password</a>
+                                        </li>
+                                        <li>
+                                            <a href="pages/confirm_email.html">Confirm Email</a>
+                                        </li>
+                                        <li>
+                                            <a href="pages/lockscreen.html">Lock Screen</a>
+                                        </li>
+                                        <li>
+                                            <a href="pages/maintenance.html">Maintenance</a>
+                                        </li>
+                                    </ul>
+                                </li>*@
 
                             <li>
                                 <a href="gallery/index.html"><i class="zmdi zmdi-picture-in-picture"></i> Gallery</a>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -31,13 +32,17 @@ namespace ProHallManagement.Models
         [DisplayName("Work End")]
         public DateTime DateEnd { get; set; }
 
-
         [DisplayName("Active Now")]
         public Boolean Activity { get; set; }
 
         [Required]
         [DisplayName("Phone No.")]
         public int Phone { get; set; }
+
+
+        public int FacultyId { get; set; }
+        [ForeignKey("FacultyId")]
+        public virtual Faculty Faculty { get; set; }
 
 
 

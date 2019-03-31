@@ -14,7 +14,7 @@ namespace ProHallManagement.Models
         [Required]
         [DisplayName("Student ID")]
         public int StudentId { get; set; }
-        
+
         [DisplayName("Email")]
         public string Email { get; set; }
 
@@ -32,22 +32,21 @@ namespace ProHallManagement.Models
 
 
         public int FacultyId { get; set; }
-        
-        public Faculty Faculty { get; set; }
+        [ForeignKey("FacultyId")]
+        public virtual Faculty Faculty { get; set; }
+
 
         public int SessionId { get; set; }
+        [ForeignKey("SessionId")]
+        public virtual Session Session { get; set; }
 
-        public Session Session { get; set; }
-        
+
         //public Boolean IsPaid { get; set; }
         [Required]
         [DisplayName("Phone No.")]
         public int Phone { get; set; }
 
 
-
-        public int PostId { get; set; }
-        public virtual ICollection<Post> Post { get; set; }
 
 
     }

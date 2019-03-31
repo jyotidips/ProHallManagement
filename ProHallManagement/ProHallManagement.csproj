@@ -57,6 +57,12 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -167,6 +173,8 @@
     <Compile Include="Helpers\DecryptPass.cs" />
     <Compile Include="Helpers\DeleteConfirm.cs" />
     <Compile Include="Helpers\EncryptPass.cs" />
+    <Compile Include="Helpers\PostManage.cs" />
+    <Compile Include="Helpers\PostRepo.cs" />
     <Compile Include="Migrations\201806291356130_AddSessionID.cs" />
     <Compile Include="Migrations\201806291356130_AddSessionID.Designer.cs">
       <DependentUpon>201806291356130_AddSessionID.cs</DependentUpon>
@@ -307,21 +315,114 @@
     <Compile Include="Migrations\201812021922217_Adding_IsCoverPic_AttributetoUserImage_Table.Designer.cs">
       <DependentUpon>201812021922217_Adding_IsCoverPic_AttributetoUserImage_Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812141015276_AddSomeAttributeInPostImages.cs" />
+    <Compile Include="Migrations\201812141015276_AddSomeAttributeInPostImages.Designer.cs">
+      <DependentUpon>201812141015276_AddSomeAttributeInPostImages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812150727499_changeAttributeTypeinPOST.cs" />
+    <Compile Include="Migrations\201812150727499_changeAttributeTypeinPOST.Designer.cs">
+      <DependentUpon>201812150727499_changeAttributeTypeinPOST.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812150734503_changeAttributeTypeinPOSTAgain.cs" />
+    <Compile Include="Migrations\201812150734503_changeAttributeTypeinPOSTAgain.Designer.cs">
+      <DependentUpon>201812150734503_changeAttributeTypeinPOSTAgain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812150742450_changeAttributeTypeinPOSTFinal.cs" />
+    <Compile Include="Migrations\201812150742450_changeAttributeTypeinPOSTFinal.Designer.cs">
+      <DependentUpon>201812150742450_changeAttributeTypeinPOSTFinal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812150746195_changeAttributeTypeinPOSTFullyFinal.cs" />
+    <Compile Include="Migrations\201812150746195_changeAttributeTypeinPOSTFullyFinal.Designer.cs">
+      <DependentUpon>201812150746195_changeAttributeTypeinPOSTFullyFinal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901090953568_migrationForErrorHandlingInAlbum.cs" />
+    <Compile Include="Migrations\201901090953568_migrationForErrorHandlingInAlbum.Designer.cs">
+      <DependentUpon>201901090953568_migrationForErrorHandlingInAlbum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901090956284_migrationForErrorHandlingInAlbum2.cs" />
+    <Compile Include="Migrations\201901090956284_migrationForErrorHandlingInAlbum2.Designer.cs">
+      <DependentUpon>201901090956284_migrationForErrorHandlingInAlbum2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901091629324_migrationForErrorHandlingInDatabaseFromAlbum.cs" />
+    <Compile Include="Migrations\201901091629324_migrationForErrorHandlingInDatabaseFromAlbum.Designer.cs">
+      <DependentUpon>201901091629324_migrationForErrorHandlingInDatabaseFromAlbum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901091639501_migrationForErrorHandlingInDatabaseFromAlbumReADD.cs" />
+    <Compile Include="Migrations\201901091639501_migrationForErrorHandlingInDatabaseFromAlbumReADD.Designer.cs">
+      <DependentUpon>201901091639501_migrationForErrorHandlingInDatabaseFromAlbumReADD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901100731459_RemoveAlbumAndUserImageForErrorHandling.cs" />
+    <Compile Include="Migrations\201901100731459_RemoveAlbumAndUserImageForErrorHandling.Designer.cs">
+      <DependentUpon>201901100731459_RemoveAlbumAndUserImageForErrorHandling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901100741138_AddAlbumAndUserImageForErrorHandling.cs" />
+    <Compile Include="Migrations\201901100741138_AddAlbumAndUserImageForErrorHandling.Designer.cs">
+      <DependentUpon>201901100741138_AddAlbumAndUserImageForErrorHandling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901141452269_addRequired_In_PostImages_Table.cs" />
+    <Compile Include="Migrations\201901141452269_addRequired_In_PostImages_Table.Designer.cs">
+      <DependentUpon>201901141452269_addRequired_In_PostImages_Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901141529019_Changes_In_PostImages_TableAND_POSTable.cs" />
+    <Compile Include="Migrations\201901141529019_Changes_In_PostImages_TableAND_POSTable.Designer.cs">
+      <DependentUpon>201901141529019_Changes_In_PostImages_TableAND_POSTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901141559450_ErrorSolvingDropTwoTables.cs" />
+    <Compile Include="Migrations\201901141559450_ErrorSolvingDropTwoTables.Designer.cs">
+      <DependentUpon>201901141559450_ErrorSolvingDropTwoTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901141718481_ErrorSolvingMassiveChangeInTablesRelation.cs" />
+    <Compile Include="Migrations\201901141718481_ErrorSolvingMassiveChangeInTablesRelation.Designer.cs">
+      <DependentUpon>201901141718481_ErrorSolvingMassiveChangeInTablesRelation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901141743246_AddColumnAlbumId_Index_Fkey.cs" />
+    <Compile Include="Migrations\201901141743246_AddColumnAlbumId_Index_Fkey.Designer.cs">
+      <DependentUpon>201901141743246_AddColumnAlbumId_Index_Fkey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901151241039_Remove_RelationOfPImage.cs" />
+    <Compile Include="Migrations\201901151241039_Remove_RelationOfPImage.Designer.cs">
+      <DependentUpon>201901151241039_Remove_RelationOfPImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901181211574_addforeignKey1.cs" />
+    <Compile Include="Migrations\201901181211574_addforeignKey1.Designer.cs">
+      <DependentUpon>201901181211574_addforeignKey1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901181216408_addforeignKey2.cs" />
+    <Compile Include="Migrations\201901181216408_addforeignKey2.Designer.cs">
+      <DependentUpon>201901181216408_addforeignKey2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901181220591_addforeignKey3.cs" />
+    <Compile Include="Migrations\201901181220591_addforeignKey3.Designer.cs">
+      <DependentUpon>201901181220591_addforeignKey3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901181223229_addforeignKey4.cs" />
+    <Compile Include="Migrations\201901181223229_addforeignKey4.Designer.cs">
+      <DependentUpon>201901181223229_addforeignKey4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901181245350_addforeignKey5.cs" />
+    <Compile Include="Migrations\201901181245350_addforeignKey5.Designer.cs">
+      <DependentUpon>201901181245350_addforeignKey5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903311402330_createUpdatedAT.cs" />
+    <Compile Include="Migrations\201903311402330_createUpdatedAT.Designer.cs">
+      <DependentUpon>201903311402330_createUpdatedAT.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\DataContext.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Faculty.cs" />
     <Compile Include="Models\Notification.cs" />
-    <Compile Include="Models\Post.cs" />
-    <Compile Include="Models\PostImage.cs" />
+    <Compile Include="Models\PImage.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Teacher.cs" />
+    <Compile Include="Models\UAlbum.cs" />
+    <Compile Include="Models\UComment.cs" />
+    <Compile Include="Models\UImage.cs" />
+    <Compile Include="Models\UPost.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserCategory.cs" />
-    <Compile Include="Models\UserImage.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Models\Work.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -340,150 +441,104 @@
     <Compile Include="ViewModel\UserView.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\assets\css\animate.min.css" />
-    <Content Include="Content\assets\css\bootstrap-rtl.css" />
-    <Content Include="Content\assets\css\bootstrap.css" />
-    <Content Include="Content\assets\css\calendar\bootstrap-datetimepicker.min.css" />
-    <Content Include="Content\assets\css\calendar\bootstrap-material-datetimepicker.css" />
-    <Content Include="Content\assets\css\calendar\fullcalendar.min.css" />
-    <Content Include="Content\assets\css\calendar\fullcalendar.print.css" />
-    <Content Include="Content\assets\css\datatables.min.css" />
-    <Content Include="Content\assets\css\dataTables.responsive.css" />
-    <Content Include="Content\assets\css\deluxe-admin-rtl.css" />
-    <Content Include="Content\assets\css\deluxe-admin.css" />
-    <Content Include="Content\assets\css\error.css" />
-    <Content Include="Content\assets\css\fileinput.min.css" />
-    <Content Include="Content\assets\css\font\VideoJSd41d.html" />
-    <Content Include="Content\assets\css\gallery\justifiedGallery.min.css" />
-    <Content Include="Content\assets\css\gallery\light-gallery.css" />
-    <Content Include="Content\assets\css\hover.css" />
-    <Content Include="Content\assets\css\hover.min.css" />
-    <Content Include="Content\assets\css\jquery-jvectormap.css" />
-    <Content Include="Content\assets\css\material-design-iconic-font.min.css" />
-    <Content Include="Content\assets\css\metisMenu.min.css" />
-    <Content Include="Content\assets\css\ripple.min.css" />
-    <Content Include="Content\assets\css\social-buttons.css" />
-    <Content Include="Content\assets\css\sweet-alert.min.css" />
-    <Content Include="Content\assets\css\video-js.min.css" />
-    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\assets\fonts\lgd641.svg" />
-    <Content Include="Content\assets\header-bg.jpg" />
-    <Content Include="Content\assets\img\avatar.jpg" />
-    <Content Include="Content\assets\img\bg-black.jpg" />
-    <Content Include="Content\assets\img\bg-material.png" />
-    <Content Include="Content\assets\img\bg-profile.jpg" />
-    <Content Include="Content\assets\img\cards.jpg" />
-    <Content Include="Content\assets\img\ecommerce\watch-black.jpg" />
-    <Content Include="Content\assets\img\ecommerce\watch-blue.jpg" />
-    <Content Include="Content\assets\img\ecommerce\watch-white.jpg" />
-    <Content Include="Content\assets\img\ecommerce\watch-yellow.jpg" />
-    <Content Include="Content\assets\img\flot\bars.png" />
-    <Content Include="Content\assets\img\flot\bars_active.png" />
-    <Content Include="Content\assets\img\flot\lines.png" />
-    <Content Include="Content\assets\img\flot\lines_active.png" />
-    <Content Include="Content\assets\img\gallery\1.jpg" />
-    <Content Include="Content\assets\img\gallery\10.jpg" />
-    <Content Include="Content\assets\img\gallery\11.jpg" />
-    <Content Include="Content\assets\img\gallery\12.jpg" />
-    <Content Include="Content\assets\img\gallery\13.jpg" />
-    <Content Include="Content\assets\img\gallery\14.jpg" />
-    <Content Include="Content\assets\img\gallery\15.jpg" />
-    <Content Include="Content\assets\img\gallery\16.jpg" />
-    <Content Include="Content\assets\img\gallery\17.jpg" />
-    <Content Include="Content\assets\img\gallery\18.jpg" />
-    <Content Include="Content\assets\img\gallery\19.jpg" />
-    <Content Include="Content\assets\img\gallery\2.jpg" />
-    <Content Include="Content\assets\img\gallery\20.jpg" />
-    <Content Include="Content\assets\img\gallery\21.jpg" />
-    <Content Include="Content\assets\img\gallery\22.jpg" />
-    <Content Include="Content\assets\img\gallery\23.jpg" />
-    <Content Include="Content\assets\img\gallery\24.jpg" />
-    <Content Include="Content\assets\img\gallery\3.jpg" />
-    <Content Include="Content\assets\img\gallery\4.jpg" />
-    <Content Include="Content\assets\img\gallery\5.jpg" />
-    <Content Include="Content\assets\img\gallery\6.jpg" />
-    <Content Include="Content\assets\img\gallery\7.jpg" />
-    <Content Include="Content\assets\img\gallery\8.jpg" />
-    <Content Include="Content\assets\img\gallery\9.jpg" />
-    <Content Include="Content\assets\img\gallery\poster1.jpg" />
-    <Content Include="Content\assets\img\gallery\poster2.jpg" />
-    <Content Include="Content\assets\img\gallery\poster3.jpg" />
-    <Content Include="Content\assets\img\gallery\poster4.jpg" />
-    <Content Include="Content\assets\img\loading-sm.html" />
-    <Content Include="Content\assets\img\loading.gif" />
-    <Content Include="Content\assets\img\play-button.png" />
-    <Content Include="Content\assets\img\video-play.png" />
-    <Content Include="Content\assets\img\vimeo-play.png" />
-    <Content Include="Content\assets\img\youtube-play.png" />
-    <Content Include="Content\assets\js\bootstrap-notify.min.js" />
-    <Content Include="Content\assets\js\bootstrap.min.js" />
-    <Content Include="Content\assets\js\calendar\bootstrap-datetimepicker.min.js" />
-    <Content Include="Content\assets\js\calendar\bootstrap-material-datetimepicker.js" />
-    <Content Include="Content\assets\js\calendar\fullcalendar.min.js" />
-    <Content Include="Content\assets\js\calendar\moment-with-locales.js" />
-    <Content Include="Content\assets\js\charts\chartjs\chart.min.js" />
-    <Content Include="Content\assets\js\charts\flot.tooltip\jquery.flot.tooltip.min.js" />
-    <Content Include="Content\assets\js\charts\flot\excanvas.min.js" />
-    <Content Include="Content\assets\js\charts\flot\jquery.flot.js" />
-    <Content Include="Content\assets\js\charts\flot\jquery.flot.pie.js" />
-    <Content Include="Content\assets\js\charts\flot\jquery.flot.resize.js" />
-    <Content Include="Content\assets\js\charts\flot\jquery.flot.time.js" />
-    <Content Include="Content\assets\js\charts\morris\morris.min.js" />
-    <Content Include="Content\assets\js\datatables.min.js" />
-    <Content Include="Content\assets\js\dataTables.responsive.js" />
-    <Content Include="Content\assets\js\fileinput\fileinput.min.js" />
-    <Content Include="Content\assets\js\fileinput\fileinput.script.js" />
-    <Content Include="Content\assets\js\fileinput\plugins\canvas-to-blob.min.js" />
-    <Content Include="Content\assets\js\fileinput\plugins\purify.min.js" />
-    <Content Include="Content\assets\js\fileinput\plugins\sortable.min.js" />
-    <Content Include="Content\assets\js\fileinput\themes\fa\theme.js" />
-    <Content Include="Content\assets\js\gallery\jquery.justifiedGallery.min.js" />
-    <Content Include="Content\assets\js\gallery\lg-autoplay.min.js" />
-    <Content Include="Content\assets\js\gallery\lg-fullscreen.min.js" />
-    <Content Include="Content\assets\js\gallery\lg-thumbnail.min.js" />
-    <Content Include="Content\assets\js\gallery\lg-video.js" />
-    <Content Include="Content\assets\js\gallery\lg-zoom.min.js" />
-    <Content Include="Content\assets\js\gallery\lightgallery.min.js" />
-    <Content Include="Content\assets\js\jquery-2.2.4.min.js" />
-    <Content Include="Content\assets\js\jquery.counterup.min.js" />
-    <Content Include="Content\assets\js\jquery.knob.min.js" />
-    <Content Include="Content\assets\js\jquery.mousewheel.min.js" />
-    <Content Include="Content\assets\js\jquery.slimscroll.min.js" />
-    <Content Include="Content\assets\js\maps\gmaps.min.js" />
-    <Content Include="Content\assets\js\maps\jvectormap\country\jquery-jvectormap-de-mill.js" />
-    <Content Include="Content\assets\js\maps\jvectormap\country\jquery-jvectormap-fr_regions-mill.js" />
-    <Content Include="Content\assets\js\maps\jvectormap\country\jquery-jvectormap-ru_fd-merc.js" />
-    <Content Include="Content\assets\js\maps\jvectormap\country\jquery-jvectormap-uk_regions-mill.js" />
-    <Content Include="Content\assets\js\maps\jvectormap\country\jquery-jvectormap-us-mill.js" />
-    <Content Include="Content\assets\js\maps\jvectormap\country\jquery-jvectormap-us-ny-newyork-mill.js" />
-    <Content Include="Content\assets\js\maps\jvectormap\country\jquery-jvectormap-world-mill.js" />
-    <Content Include="Content\assets\js\maps\jvectormap\gdp-data.js" />
-    <Content Include="Content\assets\js\maps\jvectormap\jquery.jvectormap.min.js" />
-    <Content Include="Content\assets\js\metisMenu.min.js" />
-    <Content Include="Content\assets\js\modernizr.js" />
-    <Content Include="Content\assets\js\pages.html" />
-    <Content Include="Content\assets\js\prettify.js" />
-    <Content Include="Content\assets\js\raphael\raphael.min.js" />
-    <Content Include="Content\assets\js\ripple.min.js" />
-    <Content Include="Content\assets\js\scripts\calendar.js" />
-    <Content Include="Content\assets\js\scripts\chartjs.js" />
-    <Content Include="Content\assets\js\scripts\dashboard.js" />
-    <Content Include="Content\assets\js\scripts\error.js" />
-    <Content Include="Content\assets\js\scripts\flot.js" />
-    <Content Include="Content\assets\js\scripts\init-rtl.js" />
-    <Content Include="Content\assets\js\scripts\init.js" />
-    <Content Include="Content\assets\js\scripts\maps.js" />
-    <Content Include="Content\assets\js\scripts\morris.js" />
-    <Content Include="Content\assets\js\scripts\notifications.js" />
-    <Content Include="Content\assets\js\sweetalert.min.js" />
-    <Content Include="Content\assets\js\typed.min.js" />
-    <Content Include="Content\assets\js\video.min.js" />
-    <Content Include="Content\assets\js\videojs-ie8.js" />
-    <Content Include="Content\assets\js\waypoints.min.js" />
-    <Content Include="Content\assets\loader.gif" />
-    <Content Include="Content\assets\login-bg.jpg" />
-    <Content Include="Assets\sidebar.css" />
-    <Content Include="Assets\simple-sidebar.css" />
+    <Content Include="Assets\css\animate-3.7.0.css" />
+    <Content Include="Assets\css\bootstrap-4.1.3.min.css" />
+    <Content Include="Assets\css\font-awesome-4.7.0.min.css" />
+    <Content Include="Assets\css\ion.rangeSlider.css" />
+    <Content Include="Assets\css\ion.rangeSlider.skinFlat.css" />
+    <Content Include="Assets\css\nice-select.css" />
+    <Content Include="Assets\css\owl-carousel.min.css" />
+    <Content Include="Assets\css\owl.video.play.html" />
+    <Content Include="Assets\css\style.css" />
+    <Content Include="Assets\fonts\flat-icon\flaticon.css" />
+    <Content Include="Assets\fonts\flat-icon\Flaticon.svg" />
+    <Content Include="Assets\fonts\fontawesome-webfont3e6e.svg" />
+    <Content Include="Assets\images\banner-bg.jpg" />
+    <Content Include="Assets\images\blog-bg.jpg" />
+    <Content Include="Assets\images\c1.jpg" />
+    <Content Include="Assets\images\c2.jpg" />
+    <Content Include="Assets\images\c3.jpg" />
+    <Content Include="Assets\images\c4.jpg" />
+    <Content Include="Assets\images\c5.jpg" />
+    <Content Include="Assets\images\cat1.png" />
+    <Content Include="Assets\images\cat2.png" />
+    <Content Include="Assets\images\cat3.png" />
+    <Content Include="Assets\images\cat4.png" />
+    <Content Include="Assets\images\cat5.png" />
+    <Content Include="Assets\images\cat6.png" />
+    <Content Include="Assets\images\cat7.png" />
+    <Content Include="Assets\images\cat8.png" />
+    <Content Include="Assets\images\elements\d.jpg" />
+    <Content Include="Assets\images\elements\disabled-check.png" />
+    <Content Include="Assets\images\elements\disabled-radio.png" />
+    <Content Include="Assets\images\elements\f1.jpg" />
+    <Content Include="Assets\images\elements\f2.jpg" />
+    <Content Include="Assets\images\elements\f3.jpg" />
+    <Content Include="Assets\images\elements\f4.jpg" />
+    <Content Include="Assets\images\elements\f5.jpg" />
+    <Content Include="Assets\images\elements\f6.jpg" />
+    <Content Include="Assets\images\elements\f7.jpg" />
+    <Content Include="Assets\images\elements\f8.jpg" />
+    <Content Include="Assets\images\elements\g1.jpg" />
+    <Content Include="Assets\images\elements\g2.jpg" />
+    <Content Include="Assets\images\elements\g3.jpg" />
+    <Content Include="Assets\images\elements\g4.jpg" />
+    <Content Include="Assets\images\elements\g5.jpg" />
+    <Content Include="Assets\images\elements\g6.jpg" />
+    <Content Include="Assets\images\elements\g7.jpg" />
+    <Content Include="Assets\images\elements\g8.jpg" />
+    <Content Include="Assets\images\elements\primary-check.png" />
+    <Content Include="Assets\images\elements\primary-radio.png" />
+    <Content Include="Assets\images\elements\success-check.png" />
+    <Content Include="Assets\images\elements\success-radio.png" />
+    <Content Include="Assets\images\employee1.jpg" />
+    <Content Include="Assets\images\employee2.jpg" />
+    <Content Include="Assets\images\feed1.jpg" />
+    <Content Include="Assets\images\feed2.jpg" />
+    <Content Include="Assets\images\feed3.jpg" />
+    <Content Include="Assets\images\feed4.jpg" />
+    <Content Include="Assets\images\feed5.jpg" />
+    <Content Include="Assets\images\feed6.jpg" />
+    <Content Include="Assets\images\feed7.jpg" />
+    <Content Include="Assets\images\feed8.jpg" />
+    <Content Include="Assets\images\job1.png" />
+    <Content Include="Assets\images\job2.png" />
+    <Content Include="Assets\images\job3.png" />
+    <Content Include="Assets\images\job4.png" />
+    <Content Include="Assets\images\job5.png" />
+    <Content Include="Assets\images\logo-light.png" />
+    <Content Include="Assets\images\logo.png" />
+    <Content Include="Assets\images\logo\favicon.png" />
+    <Content Include="Assets\images\mobile.png" />
+    <Content Include="Assets\images\news1.jpg" />
+    <Content Include="Assets\images\news2.jpg" />
+    <Content Include="Assets\images\news3.jpg" />
+    <Content Include="Assets\images\newsletter-bg.jpg" />
+    <Content Include="Assets\images\next.jpg" />
+    <Content Include="Assets\images\p1.jpg" />
+    <Content Include="Assets\images\p2.jpg" />
+    <Content Include="Assets\images\p3.jpg" />
+    <Content Include="Assets\images\p4.jpg" />
+    <Content Include="Assets\images\page-header-bg.jpg" />
+    <Content Include="Assets\images\prev.jpg" />
+    <Content Include="Assets\images\r1.jpg" />
+    <Content Include="Assets\images\r2.jpg" />
+    <Content Include="Assets\images\r3.jpg" />
+    <Content Include="Assets\images\r4.jpg" />
+    <Content Include="Assets\images\team1.jpg" />
+    <Content Include="Assets\images\team2.jpg" />
+    <Content Include="Assets\images\team3.jpg" />
+    <Content Include="Assets\images\team4.jpg" />
+    <Content Include="Assets\images\user2.jpg" />
+    <Content Include="Assets\img\sprite-skin-flat.html" />
+    <Content Include="Assets\js\main.js" />
+    <Content Include="Assets\js\vendor\bootstrap-4.1.3.min.js" />
+    <Content Include="Assets\js\vendor\gmaps.min.js" />
+    <Content Include="Assets\js\vendor\ion.rangeSlider.js" />
+    <Content Include="Assets\js\vendor\jquery-2.2.4.min.js" />
+    <Content Include="Assets\js\vendor\jquery.nice-select.min.js" />
+    <Content Include="Assets\js\vendor\owl-carousel.min.js" />
+    <Content Include="Assets\js\vendor\wow.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\bootstrap.min.css" />
@@ -501,207 +556,12 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular-5.html" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.html" />
     <Content Include="Content\fonts\glyphicons-halflings-regulard41d.html" />
-    <Content Include="Content\images\blog-maroon-layer.png" />
-    <Content Include="Content\images\resource\ad1.jpg" />
-    <Content Include="Content\images\resource\admin.jpg" />
-    <Content Include="Content\images\resource\author.jpg" />
-    <Content Include="Content\images\resource\author.png" />
-    <Content Include="Content\images\resource\blog-candy-full1.jpg" />
-    <Content Include="Content\images\resource\blog-candy-full2.jpg" />
-    <Content Include="Content\images\resource\blog-candy-full3.jpg" />
-    <Content Include="Content\images\resource\blog-candy-wide1.jpg" />
-    <Content Include="Content\images\resource\blog-candy-wide2.jpg" />
-    <Content Include="Content\images\resource\blog-candy-wide3.jpg" />
-    <Content Include="Content\images\resource\blog-candy-wide4.jpg" />
-    <Content Include="Content\images\resource\blog-candy-wide5.jpg" />
-    <Content Include="Content\images\resource\blog-candy-wide6.jpg" />
-    <Content Include="Content\images\resource\blog-candy1.jpg" />
-    <Content Include="Content\images\resource\blog-candy2.jpg" />
-    <Content Include="Content\images\resource\blog-candy3.jpg" />
-    <Content Include="Content\images\resource\blog-candy4.jpg" />
-    <Content Include="Content\images\resource\blog-candy5.jpg" />
-    <Content Include="Content\images\resource\blog-candy6.jpg" />
-    <Content Include="Content\images\resource\blog-candy7.jpg" />
-    <Content Include="Content\images\resource\blog-candy8.jpg" />
-    <Content Include="Content\images\resource\blog-candy9.jpg" />
-    <Content Include="Content\images\resource\blog-featured-c1.jpg" />
-    <Content Include="Content\images\resource\blog-featured-c2.jpg" />
-    <Content Include="Content\images\resource\blog-featured-c3.jpg" />
-    <Content Include="Content\images\resource\blog-featured-c4.jpg" />
-    <Content Include="Content\images\resource\blog-featured-c5.jpg" />
-    <Content Include="Content\images\resource\blog-fella1.jpg" />
-    <Content Include="Content\images\resource\blog-fella2.jpg" />
-    <Content Include="Content\images\resource\blog-fella3.jpg" />
-    <Content Include="Content\images\resource\blog-fella4.jpg" />
-    <Content Include="Content\images\resource\blog-jannat1.jpg" />
-    <Content Include="Content\images\resource\blog-jannat10.jpg" />
-    <Content Include="Content\images\resource\blog-jannat11.jpg" />
-    <Content Include="Content\images\resource\blog-jannat12.jpg" />
-    <Content Include="Content\images\resource\blog-jannat13.jpg" />
-    <Content Include="Content\images\resource\blog-jannat14.jpg" />
-    <Content Include="Content\images\resource\blog-jannat15.jpg" />
-    <Content Include="Content\images\resource\blog-jannat16.jpg" />
-    <Content Include="Content\images\resource\blog-jannat17.jpg" />
-    <Content Include="Content\images\resource\blog-jannat18.jpg" />
-    <Content Include="Content\images\resource\blog-jannat19.jpg" />
-    <Content Include="Content\images\resource\blog-jannat2.jpg" />
-    <Content Include="Content\images\resource\blog-jannat20.jpg" />
-    <Content Include="Content\images\resource\blog-jannat21.jpg" />
-    <Content Include="Content\images\resource\blog-jannat3.jpg" />
-    <Content Include="Content\images\resource\blog-jannat4.jpg" />
-    <Content Include="Content\images\resource\blog-jannat5.jpg" />
-    <Content Include="Content\images\resource\blog-jannat6.jpg" />
-    <Content Include="Content\images\resource\blog-jannat7.jpg" />
-    <Content Include="Content\images\resource\blog-jannat8.jpg" />
-    <Content Include="Content\images\resource\blog-jannat9.jpg" />
-    <Content Include="Content\images\resource\blog-maroon-m1.jpg" />
-    <Content Include="Content\images\resource\blog-maroon-m2.jpg" />
-    <Content Include="Content\images\resource\blog-maroon-m3.jpg" />
-    <Content Include="Content\images\resource\blog-maroon-m4.jpg" />
-    <Content Include="Content\images\resource\blog-maroon-m5.jpg" />
-    <Content Include="Content\images\resource\blog-maroon-m6.jpg" />
-    <Content Include="Content\images\resource\blog-maroon-wide1.jpg" />
-    <Content Include="Content\images\resource\blog-maroon-wide2.jpg" />
-    <Content Include="Content\images\resource\blog-maroon-wide3.jpg" />
-    <Content Include="Content\images\resource\blog-maroon1.jpg" />
-    <Content Include="Content\images\resource\blog-maroon2.jpg" />
-    <Content Include="Content\images\resource\blog-maroon3.jpg" />
-    <Content Include="Content\images\resource\blog-master-full1.jpg" />
-    <Content Include="Content\images\resource\blog-master-full2.jpg" />
-    <Content Include="Content\images\resource\blog-master-full3.jpg" />
-    <Content Include="Content\images\resource\blog-master1.jpg" />
-    <Content Include="Content\images\resource\blog-master2.jpg" />
-    <Content Include="Content\images\resource\blog-misty1.jpg" />
-    <Content Include="Content\images\resource\blog-misty2.jpg" />
-    <Content Include="Content\images\resource\blog-misty3.jpg" />
-    <Content Include="Content\images\resource\blog-slidy-dark1.jpg" />
-    <Content Include="Content\images\resource\blog-slidy-dark2.jpg" />
-    <Content Include="Content\images\resource\blog-slidy-dark3.jpg" />
-    <Content Include="Content\images\resource\blog-slidy-dark4.jpg" />
-    <Content Include="Content\images\resource\blog-slidy1.jpg" />
-    <Content Include="Content\images\resource\blog-slidy2.jpg" />
-    <Content Include="Content\images\resource\blog-slidy3.jpg" />
-    <Content Include="Content\images\resource\blog-slidy4.jpg" />
-    <Content Include="Content\images\resource\blog-snoofy1.jpg" />
-    <Content Include="Content\images\resource\blog-snoofy2.jpg" />
-    <Content Include="Content\images\resource\blog-snoofy3.jpg" />
-    <Content Include="Content\images\resource\blog-snoofy4.jpg" />
-    <Content Include="Content\images\resource\blog-ticksy1.jpg" />
-    <Content Include="Content\images\resource\blog-ticksy2.jpg" />
-    <Content Include="Content\images\resource\blog-ticksy3.jpg" />
-    <Content Include="Content\images\resource\blog-ticksy4.jpg" />
-    <Content Include="Content\images\resource\blog-ticksy5.jpg" />
-    <Content Include="Content\images\resource\blog-ticksy6.jpg" />
-    <Content Include="Content\images\resource\blog1.jpg" />
-    <Content Include="Content\images\resource\blog2.jpg" />
-    <Content Include="Content\images\resource\blog3.jpg" />
-    <Content Include="Content\images\resource\blog4.jpg" />
-    <Content Include="Content\images\resource\boogy-wide1.jpg" />
-    <Content Include="Content\images\resource\boogy-wide2.jpg" />
-    <Content Include="Content\images\resource\boogy-wide3.jpg" />
-    <Content Include="Content\images\resource\boogy1.jpg" />
-    <Content Include="Content\images\resource\boogy2.jpg" />
-    <Content Include="Content\images\resource\boogy3.jpg" />
-    <Content Include="Content\images\resource\boogy4.jpg" />
-    <Content Include="Content\images\resource\boogy5.jpg" />
-    <Content Include="Content\images\resource\boogy6.jpg" />
-    <Content Include="Content\images\resource\cat-1.jpg" />
-    <Content Include="Content\images\resource\cat-10.jpg" />
-    <Content Include="Content\images\resource\cat-11.jpg" />
-    <Content Include="Content\images\resource\cat-12.jpg" />
-    <Content Include="Content\images\resource\cat-2.jpg" />
-    <Content Include="Content\images\resource\cat-3.jpg" />
-    <Content Include="Content\images\resource\cat-4.jpg" />
-    <Content Include="Content\images\resource\cat-5.jpg" />
-    <Content Include="Content\images\resource\cat-6.jpg" />
-    <Content Include="Content\images\resource\cat-7.jpg" />
-    <Content Include="Content\images\resource\cat-8.jpg" />
-    <Content Include="Content\images\resource\cat-9.jpg" />
-    <Content Include="Content\images\resource\f1.jpg" />
-    <Content Include="Content\images\resource\f2.jpg" />
-    <Content Include="Content\images\resource\f3.jpg" />
-    <Content Include="Content\images\resource\f4.jpg" />
-    <Content Include="Content\images\resource\gallery1.jpg" />
-    <Content Include="Content\images\resource\gallery2.jpg" />
-    <Content Include="Content\images\resource\gallery3.jpg" />
-    <Content Include="Content\images\resource\gallery4.jpg" />
-    <Content Include="Content\images\resource\gallery5.jpg" />
-    <Content Include="Content\images\resource\gallery6.jpg" />
-    <Content Include="Content\images\resource\gallery7.jpg" />
-    <Content Include="Content\images\resource\gallery8.jpg" />
-    <Content Include="Content\images\resource\gallery9.jpg" />
-    <Content Include="Content\images\resource\inner-page.jpg" />
-    <Content Include="Content\images\resource\insta1.jpg" />
-    <Content Include="Content\images\resource\insta10.jpg" />
-    <Content Include="Content\images\resource\insta2.jpg" />
-    <Content Include="Content\images\resource\insta3.jpg" />
-    <Content Include="Content\images\resource\insta4.jpg" />
-    <Content Include="Content\images\resource\insta5.jpg" />
-    <Content Include="Content\images\resource\insta6.jpg" />
-    <Content Include="Content\images\resource\insta7.jpg" />
-    <Content Include="Content\images\resource\insta8.jpg" />
-    <Content Include="Content\images\resource\insta9.jpg" />
-    <Content Include="Content\images\resource\mini1.jpg" />
-    <Content Include="Content\images\resource\mini2.jpg" />
-    <Content Include="Content\images\resource\mini3.jpg" />
-    <Content Include="Content\images\resource\mini4.jpg" />
-    <Content Include="Content\images\resource\mini5.jpg" />
-    <Content Include="Content\images\resource\mini6.jpg" />
-    <Content Include="Content\images\resource\o-w1.jpg" />
-    <Content Include="Content\images\resource\o-w2.jpg" />
-    <Content Include="Content\images\resource\o-w3.jpg" />
-    <Content Include="Content\images\resource\o-w4.jpg" />
-    <Content Include="Content\images\resource\o-w5.jpg" />
-    <Content Include="Content\images\resource\o-w6.jpg" />
-    <Content Include="Content\images\resource\parallax1.jpg" />
-    <Content Include="Content\images\resource\parallax2.jpg" />
-    <Content Include="Content\images\resource\parallax3.jpg" />
-    <Content Include="Content\images\resource\parallax5.jpg" />
-    <Content Include="Content\images\resource\parallax6.jpg" />
-    <Content Include="Content\images\resource\pinterest1.jpg" />
-    <Content Include="Content\images\resource\pinterest2.jpg" />
-    <Content Include="Content\images\resource\pinterest3.jpg" />
-    <Content Include="Content\images\resource\pinterest4.jpg" />
-    <Content Include="Content\images\resource\pinterest5.jpg" />
-    <Content Include="Content\images\resource\pinterest6.jpg" />
-    <Content Include="Content\images\resource\pinterest7.jpg" />
-    <Content Include="Content\images\resource\pinterest8.jpg" />
-    <Content Include="Content\images\resource\rocket.png" />
-    <Content Include="Content\images\resource\rocket2.png" />
-    <Content Include="Content\images\resource\search1.png" />
-    <Content Include="Content\images\resource\sign.png" />
-    <Content Include="Content\images\resource\sign2.png" />
-    <Content Include="Content\images\resource\single-image.jpg" />
-    <Content Include="Content\images\resource\slidy-thumb1.jpg" />
-    <Content Include="Content\images\resource\slidy-thumb10.jpg" />
-    <Content Include="Content\images\resource\slidy-thumb2.jpg" />
-    <Content Include="Content\images\resource\slidy-thumb3.jpg" />
-    <Content Include="Content\images\resource\slidy-thumb4.jpg" />
-    <Content Include="Content\images\resource\slidy-thumb5.jpg" />
-    <Content Include="Content\images\resource\slidy-thumb6.jpg" />
-    <Content Include="Content\images\resource\slidy-thumb7.jpg" />
-    <Content Include="Content\images\resource\slidy-thumb8.jpg" />
-    <Content Include="Content\images\resource\slidy-thumb9.jpg" />
-    <Content Include="Content\images\resource\slidy1.jpg" />
-    <Content Include="Content\images\resource\slidy10.jpg" />
-    <Content Include="Content\images\resource\slidy2.jpg" />
-    <Content Include="Content\images\resource\slidy3.jpg" />
-    <Content Include="Content\images\resource\slidy4.jpg" />
-    <Content Include="Content\images\resource\slidy5.jpg" />
-    <Content Include="Content\images\resource\slidy6.jpg" />
-    <Content Include="Content\images\resource\slidy7.jpg" />
-    <Content Include="Content\images\resource\slidy8.jpg" />
-    <Content Include="Content\images\resource\slidy9.jpg" />
-    <Content Include="Content\images\resource\team1.jpg" />
-    <Content Include="Content\images\resource\team2.jpg" />
-    <Content Include="Content\images\resource\team3.jpg" />
-    <Content Include="Content\images\resource\tes1.png" />
-    <Content Include="Content\images\resource\tes2.png" />
-    <Content Include="Content\images\resource\tes3.png" />
-    <Content Include="Content\images\resource\tes4.png" />
-    <Content Include="Content\images\resource\tes5.png" />
-    <Content Include="Content\images\resource\visit1.jpg" />
-    <Content Include="Content\images\resource\visit2.jpg" />
+    <Content Include="Content\jQuery.FileUpload\css\jquery.fileupload-noscript.css" />
+    <Content Include="Content\jQuery.FileUpload\css\jquery.fileupload-ui-noscript.css" />
+    <Content Include="Content\jQuery.FileUpload\css\jquery.fileupload-ui.css" />
+    <Content Include="Content\jQuery.FileUpload\css\jquery.fileupload.css" />
+    <Content Include="Content\jQuery.FileUpload\img\loading.gif" />
+    <Content Include="Content\jQuery.FileUpload\img\progressbar.gif" />
     <Content Include="Content\js\blog-janoon-vertical.js" />
     <Content Include="Content\js\blog-ticksy-vertical.js" />
     <Content Include="Content\js\bootstrap.min.js" />
@@ -718,6 +578,7 @@
     <Content Include="Content\js\slide-for.js" />
     <Content Include="Content\js\slide-post-carousel.js" />
     <Content Include="Content\js\testimonial.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -760,24 +621,35 @@
     <Content Include="Content\css\fonts\fontawesome-webfont3e6e.woff" />
     <Content Include="Content\css\fonts\fontawesome-webfont3e6e.woff2" />
     <Content Include="Content\css\fonts\fontawesome-webfontd41d.eot" />
-    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\assets\fonts\glyphicons-halflings-regulard41d.eot" />
-    <Content Include="Content\assets\fonts\lgd41d.eot" />
-    <Content Include="Content\assets\fonts\lgd641.eot" />
-    <Content Include="Content\assets\fonts\lgd641.ttf" />
-    <Content Include="Content\assets\fonts\lgd641.woff" />
-    <Content Include="Content\assets\fonts\Material-Design-Iconic-Fontd1f1.ttf" />
-    <Content Include="Content\assets\fonts\Material-Design-Iconic-Fontd1f1.woff" />
-    <Content Include="Content\assets\fonts\Material-Design-Iconic-Fontd1f1.woff2" />
+    <Content Include="Assets\fonts\flat-icon\Flaticon.eot" />
+    <Content Include="Assets\fonts\flat-icon\Flaticon.ttf" />
+    <Content Include="Assets\fonts\flat-icon\Flaticon.woff" />
+    <Content Include="Assets\fonts\flat-icon\Flaticond41d.eot" />
+    <Content Include="Assets\fonts\fontawesome-webfont3e6e.eot" />
+    <Content Include="Assets\fonts\fontawesome-webfont3e6e.ttf" />
+    <Content Include="Assets\fonts\fontawesome-webfont3e6e.woff" />
+    <Content Include="Assets\fonts\fontawesome-webfont3e6e.woff2" />
+    <Content Include="Assets\fonts\fontawesome-webfontd41d.eot" />
     <None Include="Properties\PublishProfiles\ehall - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\ehallpstu - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.9.0.js" />
+    <Content Include="Scripts\jquery-ui-1.9.0.min.js" />
+    <Content Include="Scripts\jQuery.FileUpload\cors\jquery.postmessage-transport.js" />
+    <Content Include="Scripts\jQuery.FileUpload\cors\jquery.xdr-transport.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload-angular.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload-audio.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload-image.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload-jquery-ui.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload-process.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload-ui.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload-validate.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload-video.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.fileupload.js" />
+    <Content Include="Scripts\jQuery.FileUpload\jquery.iframe-transport.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -823,12 +695,14 @@
     <Content Include="Views\Users\UserProfile.cshtml" />
     <Content Include="Views\Users\Change.cshtml" />
     <Content Include="Views\Users\ChangePassword.cshtml" />
+    <Content Include="Views\Shared\_CreatePost.cshtml" />
+    <Content Include="Views\Posts\SinglePost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Assets\Images\" />
     <Folder Include="CustomValidations\" />
+    <Folder Include="Uploads\Images\Post\" />
     <Folder Include="Views\Hall\" />
     <Folder Include="Views\Image\" />
   </ItemGroup>
@@ -950,6 +824,75 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812021922217_Adding_IsCoverPic_AttributetoUserImage_Table.resx">
       <DependentUpon>201812021922217_Adding_IsCoverPic_AttributetoUserImage_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812141015276_AddSomeAttributeInPostImages.resx">
+      <DependentUpon>201812141015276_AddSomeAttributeInPostImages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812150727499_changeAttributeTypeinPOST.resx">
+      <DependentUpon>201812150727499_changeAttributeTypeinPOST.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812150734503_changeAttributeTypeinPOSTAgain.resx">
+      <DependentUpon>201812150734503_changeAttributeTypeinPOSTAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812150742450_changeAttributeTypeinPOSTFinal.resx">
+      <DependentUpon>201812150742450_changeAttributeTypeinPOSTFinal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812150746195_changeAttributeTypeinPOSTFullyFinal.resx">
+      <DependentUpon>201812150746195_changeAttributeTypeinPOSTFullyFinal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901090953568_migrationForErrorHandlingInAlbum.resx">
+      <DependentUpon>201901090953568_migrationForErrorHandlingInAlbum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901090956284_migrationForErrorHandlingInAlbum2.resx">
+      <DependentUpon>201901090956284_migrationForErrorHandlingInAlbum2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901091629324_migrationForErrorHandlingInDatabaseFromAlbum.resx">
+      <DependentUpon>201901091629324_migrationForErrorHandlingInDatabaseFromAlbum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901091639501_migrationForErrorHandlingInDatabaseFromAlbumReADD.resx">
+      <DependentUpon>201901091639501_migrationForErrorHandlingInDatabaseFromAlbumReADD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901100731459_RemoveAlbumAndUserImageForErrorHandling.resx">
+      <DependentUpon>201901100731459_RemoveAlbumAndUserImageForErrorHandling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901100741138_AddAlbumAndUserImageForErrorHandling.resx">
+      <DependentUpon>201901100741138_AddAlbumAndUserImageForErrorHandling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901141452269_addRequired_In_PostImages_Table.resx">
+      <DependentUpon>201901141452269_addRequired_In_PostImages_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901141529019_Changes_In_PostImages_TableAND_POSTable.resx">
+      <DependentUpon>201901141529019_Changes_In_PostImages_TableAND_POSTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901141559450_ErrorSolvingDropTwoTables.resx">
+      <DependentUpon>201901141559450_ErrorSolvingDropTwoTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901141718481_ErrorSolvingMassiveChangeInTablesRelation.resx">
+      <DependentUpon>201901141718481_ErrorSolvingMassiveChangeInTablesRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901141743246_AddColumnAlbumId_Index_Fkey.resx">
+      <DependentUpon>201901141743246_AddColumnAlbumId_Index_Fkey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901151241039_Remove_RelationOfPImage.resx">
+      <DependentUpon>201901151241039_Remove_RelationOfPImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901181211574_addforeignKey1.resx">
+      <DependentUpon>201901181211574_addforeignKey1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901181216408_addforeignKey2.resx">
+      <DependentUpon>201901181216408_addforeignKey2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901181220591_addforeignKey3.resx">
+      <DependentUpon>201901181220591_addforeignKey3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901181223229_addforeignKey4.resx">
+      <DependentUpon>201901181223229_addforeignKey4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901181245350_addforeignKey5.resx">
+      <DependentUpon>201901181245350_addforeignKey5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903311402330_createUpdatedAT.resx">
+      <DependentUpon>201903311402330_createUpdatedAT.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

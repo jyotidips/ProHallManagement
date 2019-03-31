@@ -10,7 +10,7 @@ namespace ProHallManagement.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
 
     }
 }

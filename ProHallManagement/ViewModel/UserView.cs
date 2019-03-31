@@ -18,7 +18,7 @@ namespace ProHallManagement.ViewModel
         public Student Student { get; set; }
         public Teacher Teacher { get; set; }
         public Employee Employee { get; set; }
-        public UserImage UserImage { get; set; }
+        public UImage UserImage { get; set; }
 
         public string Password { get; set; }
 

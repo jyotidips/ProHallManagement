@@ -23,20 +23,26 @@ namespace ProHallManagement.Controllers
         {
             if (Session["Email"] != null)
             {
-                TotalViewModel baseView = new TotalViewModel()
+                TotalViewModel baseView = new TotalViewModel
                 {
                     CurrentUserName = currentUserName
                 };
-                return View(baseView);
             }
             else
             {
-                TotalViewModel baseView = new TotalViewModel()
+                TotalViewModel baseView = new TotalViewModel
                 {
                     CurrentUserName = ""
                 };
-                return View(baseView);
             }
+
+
+
+
+            return View();
+
+
+
         }
     }
 }
